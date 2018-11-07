@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class WebApplication1Context : DbContext
+    public class GameWebApplicationContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,12 +15,12 @@ namespace WebApplication1.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public WebApplication1Context() : base("name=WebApplication1Context")
+        public GameWebApplicationContext() : base("name=WebApplication1Context")
         {
         }
 
         public System.Data.Entity.DbSet<WebApplication1.Models.User> Users { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication1.Models.Player> Players { get; set; }
+        public System.Data.Entity.DbSet<WebApplication1.Models.Character> Players { get; set; }
     }
 }

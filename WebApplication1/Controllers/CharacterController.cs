@@ -13,21 +13,21 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class PlayersController : ApiController
+    public class CharacterController : ApiController
     {
-        private WebApplication1Context db = new WebApplication1Context();
+        private GameWebApplicationContext db = new GameWebApplicationContext();
 
         // GET: api/Players
-        public IQueryable<Player> GetPlayers()
+        public IQueryable<Character> GetPlayers()
         {
             return db.Players;
         }
 
         // GET: api/Players/5
-        [ResponseType(typeof(Player))]
+        [ResponseType(typeof(Character))]
         public async Task<IHttpActionResult> GetPlayer(int id)
         {
-            Player player = await db.Players.FindAsync(id);
+            Character player = await db.Players.FindAsync(id);
             if (player == null)
             {
                 return NotFound();
@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
 
         // PUT: api/Players/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPlayer(int id, Player player)
+        public async Task<IHttpActionResult> PutPlayer(int id, Character player)
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +72,8 @@ namespace WebApplication1.Controllers
         }
 
         // POST: api/Players
-        [ResponseType(typeof(Player))]
-        public async Task<IHttpActionResult> PostPlayer(Player player)
+        [ResponseType(typeof(Character))]
+        public async Task<IHttpActionResult> PostPlayer(Character player)
         {
             if (!ModelState.IsValid)
             {
@@ -87,10 +87,10 @@ namespace WebApplication1.Controllers
         }
 
         // DELETE: api/Players/5
-        [ResponseType(typeof(Player))]
+        [ResponseType(typeof(Character))]
         public async Task<IHttpActionResult> DeletePlayer(int id)
         {
-            Player player = await db.Players.FindAsync(id);
+            Character player = await db.Players.FindAsync(id);
             if (player == null)
             {
                 return NotFound();

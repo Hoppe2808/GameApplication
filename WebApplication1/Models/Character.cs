@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using GameWebApplication.Models;
 
 namespace WebApplication1.Models
 {
-    public class Player
+    public class Character
     {
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }
+        public Inventory Inventory { get; set; }
 
         //Foreign key
         public int UserID { get; set; }

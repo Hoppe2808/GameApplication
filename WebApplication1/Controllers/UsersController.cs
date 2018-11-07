@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
 {
     public class UsersController : ApiController
     {
-        private WebApplication1Context db = new WebApplication1Context();
+        private GameWebApplicationContext db = new GameWebApplicationContext();
 
         // GET: api/Users
         public IQueryable<UserDTO> GetUsers()
