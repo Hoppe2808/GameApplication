@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using GameWebApplication.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GameWebApplication.Models
 {
     public class Statistics
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int TotalMoney { get; set; }
 
         //Foreign key
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         //Navigation property
-        public User user { get; set; }
+        public User User { get; set; }
 
     }
 }

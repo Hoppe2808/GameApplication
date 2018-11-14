@@ -41,7 +41,7 @@ namespace GameWebApplication.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != character.ID)
+            if (id != character.Id)
             {
                 return BadRequest();
             }
@@ -79,7 +79,7 @@ namespace GameWebApplication.Controllers
             db.Characters.Add(character);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = character.ID }, character);
+            return CreatedAtRoute("DefaultApi", new { id = character.Id }, character);
         }
 
         // DELETE: api/Players/5
@@ -109,7 +109,7 @@ namespace GameWebApplication.Controllers
 
         private bool CharacterExists(int id)
         {
-            return db.Characters.Count(e => e.ID == id) > 0;
+            return db.Characters.Count(e => e.Id == id) > 0;
         }
     }
 }
