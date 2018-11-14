@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication1.Models
+namespace GameWebApplication.Models
 {
     public class GameWebApplicationContext : DbContext
     {
@@ -15,12 +15,12 @@ namespace WebApplication1.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public GameWebApplicationContext() : base("name=WebApplication1Context")
+        public GameWebApplicationContext() : base("name=GameWebApplicationContext")
         {
         }
 
-        public System.Data.Entity.DbSet<WebApplication1.Models.User> Users { get; set; }
+        public System.Data.Entity.DbSet<User> Users { get; set; }
 
-        public System.Data.Entity.DbSet<WebApplication1.Models.Character> Players { get; set; }
+        public System.Data.Entity.DbSet<Character> Players { get; set; }
     }
 }

@@ -1,19 +1,21 @@
-namespace WebApplication1.Migrations
+using GameWebApplication.Models;
+
+namespace GameWebApplication.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using WebApplication1.Models;
+    using GameWebApplication.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WebApplication1.Models.GameWebApplicationContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GameWebApplicationContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WebApplication1.Models.GameWebApplicationContext context)
+        protected override void Seed(GameWebApplicationContext context)
         {
             context.Users.AddOrUpdate(x => x.ID,
                 new User() { ID = 1, Username = "Sebastian", Password = "123" },
@@ -23,6 +25,7 @@ namespace WebApplication1.Migrations
                 new Character() { ID = 1, Name = "MonsterSlayer", UserID = 1 },
                 new Character() { ID = 2, Name = "Kirneh", UserID = 2 });
 
+            base.Seed(context);
         }
     }
 }

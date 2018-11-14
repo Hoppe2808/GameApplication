@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using WebApplication1.Models;
+using GameWebApplication.Models;
 
 namespace GameWebApplication.Models
 {
@@ -17,6 +17,7 @@ namespace GameWebApplication.Models
         //Foreign key
         public int CharacterID { get; set; }
         //Navigation property
+        [Required]
         public Character character { get; set; }
 
     }

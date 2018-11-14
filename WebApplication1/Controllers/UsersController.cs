@@ -1,18 +1,13 @@
-﻿using GameWebApplication.Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebApplication1.Models;
+using GameWebApplication.Models;
 
-namespace WebApplication1.Controllers
+namespace GameWebApplication.Controllers
 {
     public class UsersController : ApiController
     {
