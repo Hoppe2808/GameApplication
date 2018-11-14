@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication1.Models
+namespace GameWebApplication.Models
 {
     public class User
     {

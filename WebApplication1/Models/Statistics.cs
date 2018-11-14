@@ -7,17 +7,18 @@ using GameWebApplication.Models;
 
 namespace GameWebApplication.Models
 {
-    public class Inventory
+    public class Statistics
     {
         public int ID { get; set; }
         [Required]
-        public int Gold { get; set; }
-        public ICollection<Item> Items { get; set; }
+        public int Kills { get; set; }
+        public int Deaths { get; set; }
+        public int TotalMoney { get; set; }
 
         //Foreign key
-        public int CharacterID { get; set; }
+        public int UserID { get; set; }
         //Navigation property
-        public Character character { get; set; }
+        public User user { get; set; }
 
     }
 }

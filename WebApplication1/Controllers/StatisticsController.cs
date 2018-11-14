@@ -10,47 +10,48 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GameWebApplication.Models;
+using GameWebApplication.Models;
 
 namespace GameWebApplication.Controllers
 {
-    public class CharacterController : ApiController
+    public class StatisticsController : ApiController
     {
         private GameWebApplicationContext db = new GameWebApplicationContext();
 
-        // GET: api/Players
-        public IQueryable<Character> GetCharacters()
+        // GET: api/Statistics
+        public IQueryable<Statistics> GetStatistics()
         {
-            return db.Characters;
+            return db.Statistics;
         }
 
-        // GET: api/Players/5
-        [ResponseType(typeof(Character))]
-        public async Task<IHttpActionResult> GetCharacter(int id)
+        // GET: api/Statistics/5
+        [ResponseType(typeof(Statistics))]
+        public async Task<IHttpActionResult> GetStatistics(int id)
         {
-            Character character = await db.Characters.FindAsync(id);
-            if (character == null)
+            Statistics statistics = await db.Statistics.FindAsync(id);
+            if (statistics == null)
             {
                 return NotFound();
             }
 
-            return Ok(character);
+            return Ok(statistics);
         }
 
-        // PUT: api/Players/5
+        // PUT: api/Statistics/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutCharacter(int id, Character character)
+        public async Task<IHttpActionResult> PutStatistics(int id, Statistics statistics)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != character.ID)
+            if (id != statistics.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(character).State = EntityState.Modified;
+            db.Entry(statistics).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +59,7 @@ namespace GameWebApplication.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CharacterExists(id))
+                if (!StatisticsExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +72,35 @@ namespace GameWebApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Players
-        [ResponseType(typeof(Character))]
-        public async Task<IHttpActionResult> PostCharacter(Character character)
+        // POST: api/Statistics
+        [ResponseType(typeof(Statistics))]
+        public async Task<IHttpActionResult> PostStatistics(Statistics statistics)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Characters.Add(character);
+            db.Statistics.Add(statistics);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = character.ID }, character);
+            return CreatedAtRoute("DefaultApi", new { id = statistics.ID }, statistics);
         }
 
-        // DELETE: api/Players/5
-        [ResponseType(typeof(Character))]
-        public async Task<IHttpActionResult> DeleteCharacter(int id)
+        // DELETE: api/Statistics/5
+        [ResponseType(typeof(Statistics))]
+        public async Task<IHttpActionResult> DeleteStatistics(int id)
         {
-            Character character = await db.Characters.FindAsync(id);
-            if (character == null)
+            Statistics statistics = await db.Statistics.FindAsync(id);
+            if (statistics == null)
             {
                 return NotFound();
             }
 
-            db.Characters.Remove(character);
+            db.Statistics.Remove(statistics);
             await db.SaveChangesAsync();
 
-            return Ok(character);
+            return Ok(statistics);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +112,9 @@ namespace GameWebApplication.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CharacterExists(int id)
+        private bool StatisticsExists(int id)
         {
-            return db.Characters.Count(e => e.ID == id) > 0;
+            return db.Statistics.Count(e => e.ID == id) > 0;
         }
     }
 }

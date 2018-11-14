@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using GameWebApplication.Models;
 
-namespace WebApplication1.Models
+namespace GameWebApplication.Models
 {
     public class Character
     {

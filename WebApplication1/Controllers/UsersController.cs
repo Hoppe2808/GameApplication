@@ -10,9 +10,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebApplication1.Models;
+using GameWebApplication.Models;
 
-namespace WebApplication1.Controllers
+namespace GameWebApplication.Controllers
 {
     public class UsersController : ApiController
     {
