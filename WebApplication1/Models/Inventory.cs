@@ -17,6 +17,7 @@ namespace GameWebApplication.Models
         //Foreign key
         public int CharacterID { get; set; }
         //Navigation property
+        [Required]
         public Character character { get; set; }
 
     }
