@@ -14,20 +14,13 @@ namespace GameWebApplication.Controllers
         private GameWebApplicationContext db = new GameWebApplicationContext();
 
         // GET: api/Users
-        public IQueryable<UserDTO> GetUsers()
+        public IQueryable<User> GetUsers()
         {
-            var users = from u in db.Users
-                        select new UserDTO()
-                        {
-                            ID = u.ID,
-                            Username = u.Username,
-                            Password = u.Password
-                        };
-            return users;
+            return db.Users;
         }
 
         // GET: api/Users/5
-        [ResponseType(typeof(UserDTO))]
+        [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> GetUser(int id)
         {
             var user = await db.Users.FindAsync(id);
