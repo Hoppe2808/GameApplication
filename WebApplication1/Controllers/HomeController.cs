@@ -11,14 +11,14 @@ namespace GameWebApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            string username = Request.Form["uname"];
 
-            if (!Request.Form["uname"].IsEmpty())
+            if (!username.IsEmpty() && username != null)
             {
-                string username = Request.Form["uname"];
                 string password = Request.Form["psw"];
 
                 UsersController usersController = new UsersController();
-                List<User> users = usersController.GetUsers() as List<User>;
+                List<User> users = usersController.GetUsers();
 
                 foreach (User user in users)
                 {
