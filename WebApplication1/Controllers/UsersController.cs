@@ -1,34 +1,34 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using GameWebApplication.DataAccessObjects;
 using GameWebApplication.Models;
 
 namespace GameWebApplication.Controllers
 {
     public class UsersController : ApiController
     {
-        private GameWebApplicationContext db = new GameWebApplicationContext();
+        UserDAO userDAO = new UserDAO();
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        public List<User> GetUsers()
         {
-            return db.Users;
+            return userDAO.GetUsers().ToList();
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> GetUser(int id)
         {
-            var user = await db.Users.FindAsync(id);
-            if (user == null)
+            var user = userDAO.GetUser(id);
+            if(user == null)
             {
-                return NotFound();
+                return null;
             }
-
             return Ok(user);
         }
 
@@ -46,22 +46,11 @@ namespace GameWebApplication.Controllers
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            bool isUpdated = userDAO.UpdateUser(id, user);
 
-            try
+            if (!isUpdated)
             {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(HttpStatusCode.BadRequest);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -76,8 +65,7 @@ namespace GameWebApplication.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
-            await db.SaveChangesAsync();
+            userDAO.AddUser(user);
 
             return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
         }
@@ -86,30 +74,15 @@ namespace GameWebApplication.Controllers
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> DeleteUser(int id)
         {
-            User user = await db.Users.FindAsync(id);
+            User user = userDAO.GetUser(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
+            userDAO.DeleteUser(user);
 
             return Ok(user);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool UserExists(int id)
-        {
-            return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }
