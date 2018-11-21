@@ -1,10 +1,11 @@
 ﻿
 namespace GameWebApplication.Models
 {
-    public class Item
+    public abstract class Item : BaseModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        private int Value { get; set; }
 
+        //Foreign key
+        public int InventoryId { get; set; }
     }
 }

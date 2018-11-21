@@ -209,12 +209,24 @@
     <Compile Include="Migrations\201811141600364_AddingModels.Designer.cs">
       <DependentUpon>201811141600364_AddingModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811211057347_AddedBaseModelAndItemAsAbstract.cs" />
+    <Compile Include="Migrations\201811211057347_AddedBaseModelAndItemAsAbstract.Designer.cs">
+      <DependentUpon>201811211057347_AddedBaseModelAndItemAsAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811211128376_UpdatedRelationships.cs" />
+    <Compile Include="Migrations\201811211128376_UpdatedRelationships.Designer.cs">
+      <DependentUpon>201811211128376_UpdatedRelationships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811211136224_UpdatedRelationships2.cs" />
+    <Compile Include="Migrations\201811211136224_UpdatedRelationships2.Designer.cs">
+      <DependentUpon>201811211136224_UpdatedRelationships2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Equipment.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Character.cs" />
-    <Compile Include="Models\CharacterDTO.cs" />
-    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\GameWebApplicationContext.cs" />
@@ -316,6 +328,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811141600364_AddingModels.resx">
       <DependentUpon>201811141600364_AddingModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811211057347_AddedBaseModelAndItemAsAbstract.resx">
+      <DependentUpon>201811211057347_AddedBaseModelAndItemAsAbstract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811211128376_UpdatedRelationships.resx">
+      <DependentUpon>201811211128376_UpdatedRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811211136224_UpdatedRelationships2.resx">
+      <DependentUpon>201811211136224_UpdatedRelationships2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

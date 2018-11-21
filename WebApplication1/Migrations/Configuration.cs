@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using GameWebApplication.Models;
@@ -20,7 +22,7 @@ namespace GameWebApplication.Migrations
                 context.Users.Add(usr1); context.Users.Add(usr1);
             }
 
-            Character character1 = new Character { Name = "MonsterSlayer", UserId = 1, User = usr1 };
+            Character character1 = new Character { Name = "MonsterSlayer", UserId = 1, User = usr1,  };
             Character character2 = new Character { Name = "Kirneh", UserId = 2, User = usr2 };
 
             if (!context.Characters.Any())
@@ -28,13 +30,20 @@ namespace GameWebApplication.Migrations
                 context.Characters.Add(character1); context.Characters.Add(character2);
             }
 
+            Inventory inventory1 = new Inventory { Gold = 30 };
+            Inventory inventory2 = new Inventory { Gold = 197 };
 
-            Item item1 = new Item { Name = "Reaper of Souls" };
-            Item item2 = new Item { Name = "Psykosværd" };
-
-            if (context.Item.Any())
+            if (context.Inventory.Any())
             {
-                context.Item.Add(item1); context.Item.Add(item2);
+                context.Inventory.Add(inventory1); context.Inventory.Add(inventory2);
+            }
+
+            Equipment item1 = new Equipment { Name = "Reaper of Souls", InventoryId = inventory1.Id };
+            Equipment item2 = new Equipment { Name = "Psykosværd", InventoryId = inventory1.Id };
+
+            if (context.Equipment.Any())
+            {
+                context.Equipment.Add(item1); context.Equipment.Add(item2);
             }
 
             context.SaveChanges();

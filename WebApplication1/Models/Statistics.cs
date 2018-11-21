@@ -2,18 +2,17 @@
 
 namespace GameWebApplication.Models
 {
-    public class Statistics
+    public class Statistics : BaseModel
     {
-        public int Id { get; set; }
         [Required]
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int TotalMoney { get; set; }
 
         //Foreign key
-        public int UserId { get; set; }
+        public int CharacterId { get; set; }
         //Navigation property
-        public User User { get; set; }
+        public User Character { get; set; }
 
     }
 }
