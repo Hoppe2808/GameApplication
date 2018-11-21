@@ -10,9 +10,9 @@ namespace GameWebApplication.Models
         public int TotalMoney { get; set; }
 
         //Foreign key
-        public int UserId { get; set; }
+        public int CharacterId { get; set; }
         //Navigation property
-        public User User { get; set; }
+        public User Character { get; set; }
 
     }
 }

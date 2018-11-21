@@ -24,7 +24,5 @@ namespace GameWebApplication.Models
         public DbSet<Inventory> Inventory { get; set; }
 
         public DbSet<Equipment> Equipment { get; set; }
-
-        public DbSet<Item> Item { get; set; }
     }
 }
