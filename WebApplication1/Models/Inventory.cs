@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameWebApplication.Models
 {
-    public class Inventory
+    public class Inventory : BaseModel
     {
         public int Id { get; set; }
         [Required]

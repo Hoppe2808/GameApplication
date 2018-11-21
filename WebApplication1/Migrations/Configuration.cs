@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using GameWebApplication.Models;
@@ -28,7 +29,6 @@ namespace GameWebApplication.Migrations
                 context.Characters.Add(character1); context.Characters.Add(character2);
             }
 
-
             Item item1 = new Item { Name = "Reaper of Souls" };
             Item item2 = new Item { Name = "Psykosværd" };
 
@@ -36,6 +36,15 @@ namespace GameWebApplication.Migrations
             {
                 context.Item.Add(item1); context.Item.Add(item2);
             }
+
+            Inventory inventory1 = new Inventory {Character = character1, CharacterId = character1.Id, Gold = 30, Items = new List<Item> {item1, item2}};
+            Inventory inventory2 = new Inventory { Character = character2, CharacterId = character2.Id, Gold = 30, Items = new List<Item> { item1 } };
+
+            if (context.Inventory.Any())
+            {
+                context.Inventory.Add(inventory1); context.Inventory.Add(inventory2);
+            }
+
 
             context.SaveChanges();
         }

@@ -1,7 +1,7 @@
 ﻿
 namespace GameWebApplication.Models
 {
-    public class Equipment
+    public class Equipment : BaseModel
     {
     }
 }

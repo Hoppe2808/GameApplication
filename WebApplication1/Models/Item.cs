@@ -1,9 +1,8 @@
 ﻿
 namespace GameWebApplication.Models
 {
-    public class Item
+    public class Item : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
     }

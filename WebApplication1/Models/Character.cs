@@ -2,9 +2,8 @@
 
 namespace GameWebApplication.Models
 {
-    public class Character
+    public class Character : BaseModel
     {
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public Inventory Inventory { get; set; }

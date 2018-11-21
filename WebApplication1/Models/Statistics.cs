@@ -2,9 +2,8 @@
 
 namespace GameWebApplication.Models
 {
-    public class Statistics
+    public class Statistics : BaseModel
     {
-        public int Id { get; set; }
         [Required]
         public int Kills { get; set; }
         public int Deaths { get; set; }
