@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201810311110556_Initial1.Designer.cs">
       <DependentUpon>201810311110556_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811141600364_AddingModels.cs" />
+    <Compile Include="Migrations\201811141600364_AddingModels.Designer.cs">
+      <DependentUpon>201811141600364_AddingModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810311110556_Initial1.resx">
       <DependentUpon>201810311110556_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811141600364_AddingModels.resx">
+      <DependentUpon>201811141600364_AddingModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

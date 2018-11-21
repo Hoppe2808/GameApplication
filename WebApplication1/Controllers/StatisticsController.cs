@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using GameWebApplication.Models;
 using GameWebApplication.Models;
 
 namespace GameWebApplication.Controllers
@@ -46,7 +41,7 @@ namespace GameWebApplication.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != statistics.ID)
+            if (id != statistics.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +79,7 @@ namespace GameWebApplication.Controllers
             db.Statistics.Add(statistics);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = statistics.ID }, statistics);
+            return CreatedAtRoute("DefaultApi", new { id = statistics.Id }, statistics);
         }
 
         // DELETE: api/Statistics/5
@@ -114,7 +109,7 @@ namespace GameWebApplication.Controllers
 
         private bool StatisticsExists(int id)
         {
-            return db.Statistics.Count(e => e.ID == id) > 0;
+            return db.Statistics.Count(e => e.Id == id) > 0;
         }
     }
 }

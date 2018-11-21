@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace GameWebApplication.Models
 {
@@ -15,14 +11,20 @@ namespace GameWebApplication.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public GameWebApplicationContext() : base("name=GameWebApplicationContext")
+        public GameWebApplicationContext() : base("GameWebApplicationContext")
         {
         }
 
-        public System.Data.Entity.DbSet<GameWebApplication.Models.User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
-        public System.Data.Entity.DbSet<GameWebApplication.Models.Character> Characters { get; set; }
+        public DbSet<Character> Characters { get; set; }
 
-        public System.Data.Entity.DbSet<GameWebApplication.Models.Statistics> Statistics { get; set; }
+        public DbSet<Statistics> Statistics { get; set; }
+
+        public DbSet<Inventory> Inventory { get; set; }
+
+        public DbSet<Equipment> Equipment { get; set; }
+
+        public DbSet<Item> Item { get; set; }
     }
 }
