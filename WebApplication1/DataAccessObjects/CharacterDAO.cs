@@ -59,8 +59,8 @@ namespace GameWebApplication.DataAccessObjects
 
         public Inventory GetInventoryForCharacter(Character character)
         {
-            int inventoryId = character.getInventoryId();
-            return db.Inventory.Find(inventoryId)
+            int inventoryId = character.InventoryId;
+            return db.Inventory.Find(inventoryId);
         }
 
         private bool CharacterExists(int id)

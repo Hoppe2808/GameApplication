@@ -6,6 +6,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Mvc;
+using System.Web.WebPages;
 using GameWebApplication.DataAccessObjects;
 using GameWebApplication.Models;
 
@@ -25,7 +27,7 @@ namespace GameWebApplication.Controllers
         public async Task<IHttpActionResult> GetUser(int id)
         {
             var user = userDAO.GetUser(id);
-            if(user == null)
+            if (user == null)
             {
                 return null;
             }
@@ -84,5 +86,11 @@ namespace GameWebApplication.Controllers
 
             return Ok(user);
         }
+        /*
+        public ActionResult UsersPage()
+        {
+            ViewBag.Title = "Users Page";
+            
+        }*/
     }
 }

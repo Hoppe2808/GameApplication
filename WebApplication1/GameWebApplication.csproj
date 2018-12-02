@@ -217,10 +217,6 @@
     <Compile Include="Migrations\201811211128376_UpdatedRelationships.Designer.cs">
       <DependentUpon>201811211128376_UpdatedRelationships.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811211136224_UpdatedRelationships2.cs" />
-    <Compile Include="Migrations\201811211136224_UpdatedRelationships2.Designer.cs">
-      <DependentUpon>201811211136224_UpdatedRelationships2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -286,6 +282,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\UsersPage.cshtml" />
+    <Content Include="Views\Home\CharacterPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,9 +331,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811211128376_UpdatedRelationships.resx">
       <DependentUpon>201811211128376_UpdatedRelationships.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211136224_UpdatedRelationships2.resx">
-      <DependentUpon>201811211136224_UpdatedRelationships2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
