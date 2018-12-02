@@ -8,10 +8,10 @@ namespace GameWebApplication.Models
         public string Name { get; set; }
 
         //Foreign key
+        [Required]
         public int InventoryId { get; set; }
         public int UserId { get; set; }
         //Navigation property
-        [Required]
         public User User { get; set; }
         public Inventory Inventory { get; set; }
     }
