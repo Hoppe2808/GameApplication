@@ -10,9 +10,10 @@ namespace GameWebApplication.Models
         //Foreign key
         [Required]
         public int InventoryId { get; set; }
+        [Required]
         public int UserId { get; set; }
         //Navigation property
-        public User User { get; set; }
         public Inventory Inventory { get; set; }
+        public User User { get; set; }
     }
 }

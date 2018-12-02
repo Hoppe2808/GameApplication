@@ -13,7 +13,7 @@ namespace GameWebApplication.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201810311108063_Initial"; }
+            get { return "201812020904306_Initial"; }
         }
         
         string IMigrationMetadata.Source

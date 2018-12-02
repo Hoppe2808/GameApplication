@@ -7,5 +7,7 @@ namespace GameWebApplication.Models
 
         //Foreign key
         public int InventoryId { get; set; }
+        //Navigation property
+        public Inventory Inventory { get; set; }
     }
 }

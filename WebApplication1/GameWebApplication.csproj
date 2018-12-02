@@ -197,29 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810311108063_Initial.cs" />
-    <Compile Include="Migrations\201810311108063_Initial.Designer.cs">
-      <DependentUpon>201810311108063_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810311110556_Initial1.cs" />
-    <Compile Include="Migrations\201810311110556_Initial1.Designer.cs">
-      <DependentUpon>201810311110556_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811141600364_AddingModels.cs" />
-    <Compile Include="Migrations\201811141600364_AddingModels.Designer.cs">
-      <DependentUpon>201811141600364_AddingModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211057347_AddedBaseModelAndItemAsAbstract.cs" />
-    <Compile Include="Migrations\201811211057347_AddedBaseModelAndItemAsAbstract.Designer.cs">
-      <DependentUpon>201811211057347_AddedBaseModelAndItemAsAbstract.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211128376_UpdatedRelationships.cs" />
-    <Compile Include="Migrations\201811211128376_UpdatedRelationships.Designer.cs">
-      <DependentUpon>201811211128376_UpdatedRelationships.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811211136224_UpdatedRelationships2.cs" />
-    <Compile Include="Migrations\201811211136224_UpdatedRelationships2.Designer.cs">
-      <DependentUpon>201811211136224_UpdatedRelationships2.cs</DependentUpon>
+    <Compile Include="Migrations\201812020904306_Initial.cs" />
+    <Compile Include="Migrations\201812020904306_Initial.Designer.cs">
+      <DependentUpon>201812020904306_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Equipment.cs" />
@@ -321,23 +301,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810311108063_Initial.resx">
-      <DependentUpon>201810311108063_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810311110556_Initial1.resx">
-      <DependentUpon>201810311110556_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811141600364_AddingModels.resx">
-      <DependentUpon>201811141600364_AddingModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211057347_AddedBaseModelAndItemAsAbstract.resx">
-      <DependentUpon>201811211057347_AddedBaseModelAndItemAsAbstract.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211128376_UpdatedRelationships.resx">
-      <DependentUpon>201811211128376_UpdatedRelationships.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811211136224_UpdatedRelationships2.resx">
-      <DependentUpon>201811211136224_UpdatedRelationships2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812020904306_Initial.resx">
+      <DependentUpon>201812020904306_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
