@@ -12,7 +12,7 @@ namespace GameWebApplication.Models
         //Foreign key
         public int CharacterId { get; set; }
         //Navigation property
-        public User Character { get; set; }
+        public Character Character { get; set; }
 
     }
 }

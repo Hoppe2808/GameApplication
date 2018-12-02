@@ -1,40 +1,37 @@
 ﻿using GameWebApplication.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
 
 namespace GameWebApplication.DataAccessObjects
 {
-    public class CharacterDAO
+    public class CharacterDao
     {
-        private GameWebApplicationContext db = new GameWebApplicationContext();
+        private readonly GameWebApplicationContext _db = new GameWebApplicationContext();
 
         // GET: api/Users
         public IQueryable<Character> GetCharacters()
         {
-            return db.Characters;
+            return _db.Characters;
         }
 
         public Character GetCharacter(int id)
         {
-            return db.Characters.Find(id);
+            return _db.Characters.Find(id);
         }
 
         public void AddCharacter(Character character)
         {
-            db.Characters.Add(character);
+            _db.Characters.Add(character);
         }
 
         public bool UpdateCharacter(int id, Character character)
         {
-            db.Entry(character).State = EntityState.Modified;
+            _db.Entry(character).State = EntityState.Modified;
 
             try
             {
-                db.SaveChangesAsync();
+                _db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -52,7 +49,7 @@ namespace GameWebApplication.DataAccessObjects
 
         public void DeleteCharacter(Character character)
         {
-            db.Characters.Remove(character);
+            _db.Characters.Remove(character);
         }
 
         //Inventory
@@ -60,12 +57,12 @@ namespace GameWebApplication.DataAccessObjects
         public Inventory GetInventoryForCharacter(Character character)
         {
             int inventoryId = character.InventoryId;
-            return db.Inventory.Find(inventoryId);
+            return _db.Inventory.Find(inventoryId);
         }
 
         private bool CharacterExists(int id)
         {
-            return db.Characters.Count(e => e.Id == id) > 0;
+            return _db.Characters.Count(e => e.Id == id) > 0;
         }
     }
 }

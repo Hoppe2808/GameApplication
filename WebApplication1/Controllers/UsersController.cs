@@ -1,13 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Mvc;
-using System.Web.WebPages;
 using GameWebApplication.DataAccessObjects;
 using GameWebApplication.Models;
 
@@ -15,76 +10,69 @@ namespace GameWebApplication.Controllers
 {
     public class UsersController : ApiController
     {
-        UserDAO userDAO = new UserDAO();
+        private readonly UserDao _userDao = new UserDao();
 
         public List<User> GetUsers()
         {
-            return userDAO.GetUsers().ToList();
+            return _userDao.GetUsers().ToList();
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public IHttpActionResult GetUser(int id)
         {
-            var user = userDAO.GetUser(id);
+            var user = _userDao.GetUser(id);
             if (user == null)
             {
-                return null;
+                return NotFound();
             }
             return Ok(user);
         }
 
         // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
+        [HttpPut]
+        public IHttpActionResult UpdateUser(int id, User userDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Id)
+            var updatedUser = _userDao.UpdateUser(id, userDto);
+
+            if (updatedUser == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-
-            bool isUpdated = userDAO.UpdateUser(id, user);
-
-            if (!isUpdated)
-            {
-                return StatusCode(HttpStatusCode.BadRequest);
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
 
         // POST: api/Users
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> PostUser(User user)
+        [HttpPost]
+        public IHttpActionResult Create(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            userDAO.AddUser(user);
-
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            return Ok(_userDao.AddUser(user));
         }
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> DeleteUser(int id)
+        public IHttpActionResult DeleteUser(int id)
         {
-            User user = userDAO.GetUser(id);
+            User user = _userDao.GetUser(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            userDAO.DeleteUser(user);
+            _userDao.DeleteUser(user);
 
-            return Ok(user);
+            return Ok();
         }
         /*
         public ActionResult UsersPage()

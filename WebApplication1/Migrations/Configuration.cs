@@ -25,7 +25,7 @@ namespace GameWebApplication.Migrations
             Inventory inventory1 = new Inventory { Gold = 30 };
             Inventory inventory2 = new Inventory { Gold = 231 };
 
-            if (context.Inventory.Any())
+            if (!context.Inventory.Any())
             {
                 context.Inventory.Add(inventory1); context.Inventory.Add(inventory2);
             }
@@ -41,9 +41,17 @@ namespace GameWebApplication.Migrations
             Equipment item1 = new Equipment { Name = "Reaper of Souls", Inventory = inventory1 };
             Equipment item2 = new Equipment { Name = "Psykosvaerd", Inventory = inventory1 };
 
-            if (context.Equipment.Any())
+            if (!context.Equipment.Any())
             {
                 context.Equipment.Add(item1); context.Equipment.Add(item2);
+            }
+
+            Statistics char1Stats = new Statistics { Character = character1, Deaths = 2, Kills = 500, TotalMoney = 4000};
+            Statistics char2Stats = new Statistics { Character = character2, Deaths = 0, Kills = 12, TotalMoney = 44 };
+
+            if (!context.Statistics.Any())
+            {
+                context.Statistics.Add(char1Stats); context.Statistics.Add(char2Stats);
             }
 
             context.SaveChanges();

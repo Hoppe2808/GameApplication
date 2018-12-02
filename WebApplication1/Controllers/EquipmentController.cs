@@ -8,20 +8,20 @@ using GameWebApplication.Models;
 
 namespace GameWebApplication.Controllers
 {
-    public class CharacterController : ApiController
+    public class EquipmentController : ApiController
     {
-        private readonly CharacterDao _equipmentDao = new CharacterDao();
+        private readonly EquipmentDao _equipmentDao = new EquipmentDao();
 
-        public List<Character> GetCharacter()
+        public List<Equipment> GetEquipment()
         {
-            return _equipmentDao.GetCharacters().ToList();
+            return _equipmentDao.GetEquipments().ToList();
         }
 
-        // GET: api/Characters/5
-        [ResponseType(typeof(Character))]
-        public IHttpActionResult GetCharacter(int id)
+        // GET: api/Equipments/5
+        [ResponseType(typeof(Equipment))]
+        public IHttpActionResult GetEquipment(int id)
         {
-            var equipment = _equipmentDao.GetCharacter(id);
+            var equipment = _equipmentDao.GetEquipment(id);
             if (equipment == null)
             {
                 return NotFound();
@@ -29,9 +29,9 @@ namespace GameWebApplication.Controllers
             return Ok(equipment);
         }
 
-        // PUT: api/Characters/5
+        // PUT: api/Equipments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCharacter(int id, Character equipment)
+        public IHttpActionResult PutEquipment(int id, Equipment equipment)
         {
             if (!ModelState.IsValid)
             {
@@ -43,7 +43,7 @@ namespace GameWebApplication.Controllers
                 return BadRequest();
             }
 
-            bool isUpdated = _equipmentDao.UpdateCharacter(id, equipment);
+            bool isUpdated = _equipmentDao.UpdateEquipment(id, equipment);
 
             if (!isUpdated)
             {
@@ -53,31 +53,31 @@ namespace GameWebApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Characters
-        [ResponseType(typeof(Character))]
-        public IHttpActionResult PostCharacter(Character equipment)
+        // POST: api/Equipments
+        [ResponseType(typeof(Equipment))]
+        public IHttpActionResult PostEquipment(Equipment equipment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _equipmentDao.AddCharacter(equipment);
+            _equipmentDao.AddEquipment(equipment);
 
             return CreatedAtRoute("DefaultApi", new { id = equipment.Id }, equipment);
         }
 
-        // DELETE: api/Characters/5
-        [ResponseType(typeof(Character))]
-        public IHttpActionResult DeleteCharacter(int id)
+        // DELETE: api/Equipments/5
+        [ResponseType(typeof(Equipment))]
+        public IHttpActionResult DeleteEquipment(int id)
         {
-            Character equipment = _equipmentDao.GetCharacter(id);
+            Equipment equipment = _equipmentDao.GetEquipment(id);
             if (equipment == null)
             {
                 return NotFound();
             }
 
-            _equipmentDao.DeleteCharacter(equipment);
+            _equipmentDao.DeleteEquipment(equipment);
 
             return Ok(equipment);
         }

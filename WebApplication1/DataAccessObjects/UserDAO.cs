@@ -1,63 +1,58 @@
 ﻿using GameWebApplication.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Web;
 
 namespace GameWebApplication.DataAccessObjects
 {
-    public class UserDAO
+    public class UserDao
     {
-        private GameWebApplicationContext db = new GameWebApplicationContext();
+        private readonly GameWebApplicationContext _db = new GameWebApplicationContext();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return _db.Users;
         }
 
         public User GetUser(int id)
         {
-            return db.Users.Find(id);
-        }
-        
-        public void AddUser(User user)
-        {
-            db.Users.Add(user);
+            return _db.Users.Find(id);
         }
 
-        public bool UpdateUser(int id, User user)
+        public User AddUser(User user)
         {
-            db.Entry(user).State = EntityState.Modified;
+            var createdUser = _db.Users.Add(user);
+            _db.SaveChanges();
+            return createdUser;
+        }
 
-            try
+        public User UpdateUser(int id, User user)
+        {
+            var existingUser = _db.Users.Find(id);
+
+            if (existingUser == null)
             {
-                db.SaveChangesAsync();
+                return null;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return true;
+            existingUser.Password = user.Password;
+            existingUser.Username = user.Username;
+
+            _db.SaveChanges();
+
+            return existingUser;
         }
 
         public void DeleteUser(User user)
         {
-            db.Users.Remove(user);
+            _db.Users.Remove(user);
+            _db.SaveChanges();
         }
 
         private bool UserExists(int id)
         {
-            return db.Users.Count(e => e.Id == id) > 0;
+            return _db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }
