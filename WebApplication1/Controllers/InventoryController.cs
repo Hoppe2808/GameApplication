@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GameWebApplication.DataAccessObjects;
@@ -12,12 +11,12 @@ namespace GameWebApplication.Controllers
     {
         private readonly InventoryDao _inventoryDao = new InventoryDao();
 
-        public List<Inventory> GetInventory()
+        public List<Inventory> GetInventories()
         {
             return _inventoryDao.GetInventory().ToList();
         }
 
-        // GET: api/Inventorys/5
+        // GET: api/Inventories/5
         [ResponseType(typeof(Inventory))]
         public IHttpActionResult GetInventory(int id)
         {
@@ -29,45 +28,37 @@ namespace GameWebApplication.Controllers
             return Ok(inventory);
         }
 
-        // PUT: api/Inventorys/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutInventory(int id, Inventory inventory)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != inventory.Id)
-            {
-                return BadRequest();
-            }
-
-            bool isUpdated = _inventoryDao.UpdateInventory(id, inventory);
-
-            if (!isUpdated)
-            {
-                return StatusCode(HttpStatusCode.BadRequest);
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Inventorys
+        // POST: api/Inventories
         [ResponseType(typeof(Inventory))]
-        public IHttpActionResult PostInventory(Inventory inventory)
+        public IHttpActionResult CreateInventory(Inventory inventory)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _inventoryDao.AddInventory(inventory);
-
-            return CreatedAtRoute("DefaultApi", new { id = inventory.Id }, inventory);
+            return Ok(_inventoryDao.AddInventory(inventory));
         }
 
-        // DELETE: api/Inventorys/5
+        // PUT: api/Inventories/5
+        [HttpPut]
+        public IHttpActionResult UpdateInventory(int id, Inventory inventory)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var updatedInventory = _inventoryDao.UpdateInventory(id, inventory);
+
+            if (updatedInventory == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedInventory);
+        }
+
+        // DELETE: api/Inventories/5
         [ResponseType(typeof(Inventory))]
         public IHttpActionResult DeleteInventory(int id)
         {

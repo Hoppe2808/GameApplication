@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GameWebApplication.DataAccessObjects;
@@ -29,6 +28,19 @@ namespace GameWebApplication.Controllers
             return Ok(user);
         }
 
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        [HttpPost]
+        public IHttpActionResult CreateUser(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(_userDao.AddUser(user));
+        }
+
         // PUT: api/Users/5
         [HttpPut]
         public IHttpActionResult UpdateUser(int id, User userDto)
@@ -44,20 +56,7 @@ namespace GameWebApplication.Controllers
             {
                 return NotFound();
             }
-            return Ok();
-        }
-
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        [HttpPost]
-        public IHttpActionResult Create(User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            return Ok(_userDao.AddUser(user));
+            return Ok(updatedUser);
         }
 
         // DELETE: api/Users/5

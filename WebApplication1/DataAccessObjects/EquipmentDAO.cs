@@ -1,6 +1,4 @@
 ﻿using GameWebApplication.Models;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace GameWebApplication.DataAccessObjects
@@ -20,41 +18,33 @@ namespace GameWebApplication.DataAccessObjects
             return _db.Equipment.Find(id);
         }
 
-        public void AddEquipment(Equipment equipment)
+        public Equipment AddEquipment(Equipment equipment)
         {
-            _db.Equipment.Add(equipment);
+            var createdEquipment = _db.Equipment.Add(equipment);
+            _db.SaveChanges();
+            return createdEquipment;
         }
 
-        public bool UpdateEquipment(int id, Equipment equipment)
+        public Equipment UpdateEquipment(int id, Equipment equipment)
         {
-            _db.Entry(equipment).State = EntityState.Modified;
+            var existingEquipment = _db.Equipment.Find(id);
 
-            try
+            if (existingEquipment == null)
             {
-                _db.SaveChangesAsync();
+                return null;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EquipmentExists(id))
-                {
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return true;
+            existingEquipment.InventoryId = equipment.InventoryId;
+            existingEquipment.Name = equipment.Name;
+
+            _db.SaveChanges();
+
+            return existingEquipment;
         }
 
         public void DeleteEquipment(Equipment equipment)
         {
             _db.Equipment.Remove(equipment);
-        }
-
-        private bool EquipmentExists(int id)
-        {
-            return _db.Equipment.Count(e => e.Id == id) > 0;
+            _db.SaveChanges();
         }
     }
 }

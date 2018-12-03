@@ -1,6 +1,4 @@
 ﻿using GameWebApplication.Models;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace GameWebApplication.DataAccessObjects
@@ -20,41 +18,32 @@ namespace GameWebApplication.DataAccessObjects
             return _db.Inventory.Find(id);
         }
 
-        public void AddInventory(Inventory inventory)
+        public Inventory AddInventory(Inventory inventory)
         {
-            _db.Inventory.Add(inventory);
+            var createdInventory = _db.Inventory.Add(inventory);
+            _db.SaveChanges();
+            return createdInventory;
         }
 
-        public bool UpdateInventory(int id, Inventory inventory)
+        public Inventory UpdateInventory(int id, Inventory inventory)
         {
-            _db.Entry(inventory).State = EntityState.Modified;
+            var existingInventory = _db.Inventory.Find(id);
 
-            try
+            if (existingInventory == null)
             {
-                _db.SaveChangesAsync();
+                return null;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!InventoryExists(id))
-                {
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return true;
+            existingInventory.Gold = inventory.Gold;
+
+            _db.SaveChanges();
+
+            return existingInventory;
         }
 
         public void DeleteInventory(Inventory inventory)
         {
             _db.Inventory.Remove(inventory);
-        }
-
-        private bool InventoryExists(int id)
-        {
-            return _db.Inventory.Count(e => e.Id == id) > 0;
+            _db.SaveChanges();
         }
     }
 }

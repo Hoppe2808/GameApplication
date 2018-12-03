@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GameWebApplication.DataAccessObjects;
@@ -29,42 +28,34 @@ namespace GameWebApplication.Controllers
             return Ok(equipment);
         }
 
-        // PUT: api/Equipments/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEquipment(int id, Equipment equipment)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != equipment.Id)
-            {
-                return BadRequest();
-            }
-
-            bool isUpdated = _equipmentDao.UpdateEquipment(id, equipment);
-
-            if (!isUpdated)
-            {
-                return StatusCode(HttpStatusCode.BadRequest);
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         // POST: api/Equipments
         [ResponseType(typeof(Equipment))]
-        public IHttpActionResult PostEquipment(Equipment equipment)
+        public IHttpActionResult CreateEquipment(Equipment equipment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _equipmentDao.AddEquipment(equipment);
+            return Ok(_equipmentDao.AddEquipment(equipment));
+        }
 
-            return CreatedAtRoute("DefaultApi", new { id = equipment.Id }, equipment);
+        // PUT: api/Equipments/5
+        [HttpPut]
+        public IHttpActionResult UpdateEquipment(int id, Equipment equipment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var updatedInventory = _equipmentDao.UpdateEquipment(id, equipment);
+
+            if (updatedInventory == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedInventory);
         }
 
         // DELETE: api/Equipments/5

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GameWebApplication.DataAccessObjects;
@@ -29,46 +28,37 @@ namespace GameWebApplication.Controllers
             return Ok(statistics);
         }
 
-        // PUT: api/Statistics/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutStatistics(int id, Statistics statistics)
+        // POST: api/Statistics
+        [HttpPost]
+        public IHttpActionResult CreateStatistics(Statistics statistics)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != statistics.Id)
-            {
-                return BadRequest();
-            }
-
-            bool isUpdated = _statisticsDao.UpdateStatistics(id, statistics);
-
-            if (!isUpdated)
-            {
-                return StatusCode(HttpStatusCode.BadRequest);
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(_statisticsDao.AddStatistics(statistics));
         }
 
-        // POST: api/Statistics
-        [ResponseType(typeof(Statistics))]
-        public IHttpActionResult PostStatistics(Statistics statistics)
+        // PUT: api/Statistics/5
+        [HttpPut]
+        public IHttpActionResult UpdateStatistics(int id, Statistics statistics)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _statisticsDao.AddStatistics(statistics);
+            var updatedStatistics = _statisticsDao.UpdateStatistics(id, statistics);
 
-            return CreatedAtRoute("DefaultApi", new { id = statistics.Id }, statistics);
+            if (updatedStatistics == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedStatistics);
         }
 
         // DELETE: api/Statistics/5
-        [ResponseType(typeof(Statistics))]
         public IHttpActionResult DeleteStatistics(int id)
         {
             Statistics statistics = _statisticsDao.GetStatistics(id);

@@ -1,7 +1,4 @@
 ﻿using GameWebApplication.Models;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Migrations;
 using System.Linq;
 
 namespace GameWebApplication.DataAccessObjects
@@ -48,11 +45,6 @@ namespace GameWebApplication.DataAccessObjects
         {
             _db.Users.Remove(user);
             _db.SaveChanges();
-        }
-
-        private bool UserExists(int id)
-        {
-            return _db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }
