@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameWebApplication.Models
 {
@@ -15,5 +16,6 @@ namespace GameWebApplication.Models
         //Navigation property
         public Inventory Inventory { get; set; }
         public User User { get; set; }
+        public ICollection<Statistics> Statistics { get; set; }
     }
 }

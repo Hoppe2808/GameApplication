@@ -5,7 +5,7 @@ using System.Web.Http.Description;
 using GameWebApplication.DataAccessObjects;
 using GameWebApplication.Models;
 
-namespace GameWebApplication.Controllers
+namespace GameWebApplication.Controllers.Data
 {
     public class EquipmentController : ApiController
     {
