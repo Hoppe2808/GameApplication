@@ -25,7 +25,7 @@ namespace GameWebApplication.DataAccessObjects
             return createdUser;
         }
 
-        public bool UpdateUser(string id, User user)
+        public User UpdateUser(string id, User user)
         {
             var existingUser = _db.Users.Find(id);
 
@@ -33,8 +33,7 @@ namespace GameWebApplication.DataAccessObjects
             {
                 return null;
             }
-            existingUser.Password = user.Password;
-            existingUser.Username = user.Username;
+            existingUser.UserName = user.UserName;
 
             _db.SaveChanges();
 
@@ -49,7 +48,7 @@ namespace GameWebApplication.DataAccessObjects
 
         private bool UserExists(string id)
         {
-            return db.Users.Count(e => e.Id == id) > 0;
+            return _db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }

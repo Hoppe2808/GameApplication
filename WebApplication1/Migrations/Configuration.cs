@@ -15,11 +15,11 @@ namespace GameWebApplication.Migrations
 
         protected override void Seed(GameWebApplicationContext context)
         {
-            var userManager = GetOwinContext().GetUserManager<AppUserManager>();
+            //var userManager = GetOwinContext().GetUserManager<AppUserManager>();
             User usr1 = new User { UserName = "Sebastian"};
             User usr2 = new User { UserName = "Rune"};
-            userManager.CreateAsync(usr1, "123");
-            userManager.CreateAsync(usr2, "456");
+            //userManager.CreateAsync(usr1, "123");
+            //userManager.CreateAsync(usr2, "456");
 
             Inventory inventory1 = new Inventory { Gold = 30 };
             Inventory inventory2 = new Inventory { Gold = 231 };

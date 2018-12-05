@@ -10,7 +10,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using GameWebApplication.Controllers.Data;
-using GameWebApplication.Models;
 
 namespace GameWebApplication.Controllers.Views
 {
@@ -45,18 +44,6 @@ namespace GameWebApplication.Controllers.Views
             return Redirect(Url.Action("Index"));
         }
 
-                foreach (User user in users)
-                {
-                    if (user.Username.Equals(username) && user.Password.Equals(password))
-                    {
-                        Response.Redirect(String.Format("statistics/{0}", user.Id));
-                        ViewBag.Title = "Statistics Page";
-                    }   return View();
-                }
-            }
-            message = Request.Form["message"];
-            message = "Login Failed";
-            return View();
         public ActionResult UsersPage()
         {
             ViewBag.Title = "Users Page";
@@ -67,7 +54,7 @@ namespace GameWebApplication.Controllers.Views
         public ActionResult CharacterPage()
         {
             CharacterController characterController = new CharacterController();
-            List<Character> characters = characterController.GetCharacters().ToList();
+            List<Character> characters = characterController.GetCharacter().ToList();
 
             ViewBag.Title = "Character Page";
 
@@ -98,13 +85,6 @@ namespace GameWebApplication.Controllers.Views
             ViewBag.Title = "Stats Page";
 
             return Content("There are no statistics if you are not logged in!");
-        }
-
-        public ActionResult CharacterPage()
-        {
-            ViewBag.Title = "Stats Page";
-
-            return View();
         }
 
     }

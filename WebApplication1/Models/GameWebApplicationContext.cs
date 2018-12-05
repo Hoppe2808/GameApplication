@@ -16,7 +16,7 @@ namespace GameWebApplication.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public override IDbSet<User> Users { get; set; }
 
         public DbSet<Character> Characters { get; set; }
 
