@@ -21,7 +21,7 @@ namespace GameWebApplication.Controllers.Views
         }
 
         [HttpPost]
-        [Route("Home/{input}")]
+        [Route("Home")]
         public ActionResult Login(UserViewModel input)
         {
             if (ModelState.IsValid)
@@ -86,6 +86,5 @@ namespace GameWebApplication.Controllers.Views
 
             return Content("There are no statistics if you are not logged in!");
         }
-
     }
 }
