@@ -54,12 +54,16 @@ namespace GameWebApplication.Migrations
                 context.Equipment.Add(item1); context.Equipment.Add(item2);
             }
 
+            context.SaveChanges();
+
             Statistics char1Stats = new Statistics { CharacterId = character1.Id, Deaths = 2, Kills = 500, TotalMoney = 4000 };
             Statistics char2Stats = new Statistics { CharacterId = character2.Id, Deaths = 0, Kills = 12, TotalMoney = 44 };
+            Statistics char3Stats = new Statistics { CharacterId = character3.Id, Deaths = 0, Kills = 12, TotalMoney = 44 };
+            Statistics char4Stats = new Statistics { CharacterId = character4.Id, Deaths = 0, Kills = 12, TotalMoney = 44 };
 
             if (!context.Statistics.Any())
             {
-                context.Statistics.Add(char1Stats); context.Statistics.Add(char2Stats);// context.Statistics.Add(char3Stats); context.Statistics.Add(char4Stats); context.Statistics.Add(char5Stats); context.Statistics.Add(char6Stats);
+                context.Statistics.Add(char1Stats); context.Statistics.Add(char2Stats); context.Statistics.Add(char3Stats); context.Statistics.Add(char4Stats);// context.Statistics.Add(char5Stats); context.Statistics.Add(char6Stats);
             }
 
             context.SaveChanges();
