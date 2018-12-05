@@ -374,6 +374,10 @@
     <Compile Include="Migrations\201812020904306_Initial.Designer.cs">
       <DependentUpon>201812020904306_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812050917328_ChangeStatisticsForeignKeyToCharacters.cs" />
+    <Compile Include="Migrations\201812050917328_ChangeStatisticsForeignKeyToCharacters.Designer.cs">
+      <DependentUpon>201812050917328_ChangeStatisticsForeignKeyToCharacters.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -480,6 +484,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812020904306_Initial.resx">
       <DependentUpon>201812020904306_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812050917328_ChangeStatisticsForeignKeyToCharacters.resx">
+      <DependentUpon>201812050917328_ChangeStatisticsForeignKeyToCharacters.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

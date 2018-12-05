@@ -41,7 +41,7 @@ namespace GameWebApplication.Migrations
 
             if (!context.Characters.Any())
             {
-                context.Characters.Add(character1); context.Characters.Add(character2); //context.Characters.Add(character3); context.Characters.Add(character4);
+                context.Characters.Add(character1); context.Characters.Add(character2); context.Characters.Add(character3); context.Characters.Add(character4);
             }
 
             Equipment item1 = new Equipment { Name = "Reaper of Souls", Inventory = inventory1 };
