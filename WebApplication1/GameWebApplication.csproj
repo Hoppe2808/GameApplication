@@ -490,6 +490,10 @@
     <Compile Include="Migrations\201812051303137_Auth_Changes.Designer.cs">
       <DependentUpon>201812051303137_Auth_Changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812051514367_Changed_UserID_In_Character_To_String.cs" />
+    <Compile Include="Migrations\201812051514367_Changed_UserID_In_Character_To_String.Designer.cs">
+      <DependentUpon>201812051514367_Changed_UserID_In_Character_To_String.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\Equipment.cs" />
@@ -635,6 +639,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812051303137_Auth_Changes.resx">
       <DependentUpon>201812051303137_Auth_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812051514367_Changed_UserID_In_Character_To_String.resx">
+      <DependentUpon>201812051514367_Changed_UserID_In_Character_To_String.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

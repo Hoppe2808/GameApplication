@@ -12,7 +12,7 @@ namespace GameWebApplication.Models
         [Required]
         public int InventoryId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         //Navigation property
         public Inventory Inventory { get; set; }
         public User User { get; set; }

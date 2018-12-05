@@ -37,7 +37,7 @@ namespace GameWebApplication.Controllers.Views
                     //use the instance that has been created. 
                     authManager.SignIn(
                         new AuthenticationProperties { IsPersistent = false }, ident);
-                    return Redirect(Url.Action("UsersPage", "Home") ?? Url.Action("Index", "Home"));
+                    return RedirectToAction("ByUser", "Statistics");
                 }
             }
             ModelState.AddModelError("", "Invalid username or password");
