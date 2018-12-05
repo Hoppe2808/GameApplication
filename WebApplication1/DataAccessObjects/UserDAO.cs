@@ -13,7 +13,7 @@ namespace GameWebApplication.DataAccessObjects
             return _db.Users;
         }
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return _db.Users.Find(id);
         }
@@ -25,7 +25,7 @@ namespace GameWebApplication.DataAccessObjects
             return createdUser;
         }
 
-        public User UpdateUser(int id, User user)
+        public User UpdateUser(string id, User user)
         {
             var existingUser = _db.Users.Find(id);
 
@@ -33,8 +33,7 @@ namespace GameWebApplication.DataAccessObjects
             {
                 return null;
             }
-            existingUser.Password = user.Password;
-            existingUser.Username = user.Username;
+            existingUser.UserName = user.UserName;
 
             _db.SaveChanges();
 
@@ -45,6 +44,11 @@ namespace GameWebApplication.DataAccessObjects
         {
             _db.Users.Remove(user);
             _db.SaveChanges();
+        }
+
+        private bool UserExists(string id)
+        {
+            return _db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace GameWebApplication.Models
 {
-    public class GameWebApplicationContext : DbContext
+    public class GameWebApplicationContext : IdentityDbContext<User>
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,7 +16,7 @@ namespace GameWebApplication.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public override IDbSet<User> Users { get; set; }
 
         public DbSet<Character> Characters { get; set; }
 

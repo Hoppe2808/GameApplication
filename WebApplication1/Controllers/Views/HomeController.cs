@@ -1,40 +1,47 @@
-﻿using System;
+﻿using GameWebApplication.Models;
+using GameWebApplication.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using GameWebApplication.Controllers.Data;
-using GameWebApplication.Models;
 
 namespace GameWebApplication.Controllers.Views
 {
     public class HomeController : Controller
     {
-        protected string message { get; set; }
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-            string username = Request.Form["uname"];
+            return View();
+        }
 
-            if (!username.IsEmpty() && username != null)
+        [HttpPost]
+        [Route("Home/{input}")]
+        public ActionResult Login(UserViewModel input)
+        {
+            if (ModelState.IsValid)
             {
-                string password = Request.Form["psw"];
+                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                var authManager = HttpContext.GetOwinContext().Authentication;
 
-                UsersController usersController = new UsersController();
-                List<User> users = usersController.GetUsers();
-
-                foreach (User user in users)
+                User user = userManager.Find(input.UserName, input.Password);
+                if (user != null)
                 {
-                    if (user.Username.Equals(username) && user.Password.Equals(password))
-                    {
-                        Response.Redirect(String.Format("statistics/{0}", user.Id));
-                        ViewBag.Title = "Statistics Page";
-                    }   return View();
+                    var ident = userManager.CreateIdentity(user,
+                        DefaultAuthenticationTypes.ApplicationCookie);
+                    //use the instance that has been created. 
+                    authManager.SignIn(
+                        new AuthenticationProperties { IsPersistent = false }, ident);
+                    return Redirect(Url.Action("UsersPage", "Home") ?? Url.Action("Index", "Home"));
                 }
             }
-            message = Request.Form["message"];
-            message = "Login Failed";
-            return View();
+            ModelState.AddModelError("", "Invalid username or password");
+            return Redirect(Url.Action("Index"));
         }
 
         public ActionResult UsersPage()
@@ -44,18 +51,40 @@ namespace GameWebApplication.Controllers.Views
             return View();
         }
 
+        public ActionResult CharacterPage()
+        {
+            CharacterController characterController = new CharacterController();
+            List<Character> characters = characterController.GetCharacter().ToList();
+
+            ViewBag.Title = "Character Page";
+
+            return View(characters);
+        }
+
+        public ActionResult AdminPage()
+        {
+            UsersController usersController = new UsersController();
+            List<User> users = usersController.GetUsers();
+
+
+
+            ViewBag.Title = "Admin Page";
+
+            return View(users);
+        }
+
+        public ActionResult CreateUser()
+        {
+            ViewBag.Title = "CREATING USER";
+
+            return View();
+        }
+
         public ActionResult StatisticsPage()
         {
             ViewBag.Title = "Stats Page";
 
             return Content("There are no statistics if you are not logged in!");
-        }
-
-        public ActionResult CharacterPage()
-        {
-            ViewBag.Title = "Stats Page";
-
-            return View();
         }
 
     }

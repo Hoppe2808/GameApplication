@@ -1,7 +1,6 @@
-using System.Web.Http;
 using WebActivatorEx;
 using GameWebApplication;
-using Swashbuckle.Application;
+using System.Web.Http;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -12,7 +11,7 @@ namespace GameWebApplication
         public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
-
+            /*
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
                     {
@@ -249,7 +248,7 @@ namespace GameWebApplication
                         // "apiKeyIn" can either be "query" or "header"
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
-                    });
+                    });*/
         }
     }
 }

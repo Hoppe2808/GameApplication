@@ -18,7 +18,7 @@ namespace GameWebApplication.Controllers.Data
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
+        public IHttpActionResult GetUser(string id)
         {
             var user = _userDao.GetUser(id);
             if (user == null)
@@ -43,7 +43,7 @@ namespace GameWebApplication.Controllers.Data
 
         // PUT: api/Users/5
         [HttpPut]
-        public IHttpActionResult UpdateUser(int id, User userDto)
+        public IHttpActionResult UpdateUser(string id, User userDto)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace GameWebApplication.Controllers.Data
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(int id)
+        public IHttpActionResult DeleteUser(string id)
         {
             User user = _userDao.GetUser(id);
             if (user == null)
