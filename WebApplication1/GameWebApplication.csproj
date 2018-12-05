@@ -490,10 +490,6 @@
     <Compile Include="Migrations\201812051303137_Auth_Changes.Designer.cs">
       <DependentUpon>201812051303137_Auth_Changes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812051248131_DontKnowWhichChangesHaveBeenMade.cs" />
-    <Compile Include="Migrations\201812051248131_DontKnowWhichChangesHaveBeenMade.Designer.cs">
-      <DependentUpon>201812051248131_DontKnowWhichChangesHaveBeenMade.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\Equipment.cs" />
