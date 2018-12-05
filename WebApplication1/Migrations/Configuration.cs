@@ -54,10 +54,10 @@ namespace GameWebApplication.Migrations
 
             Statistics char1Stats = new Statistics { Character = character1, Deaths = 2, Kills = 500, TotalMoney = 4000 };
             Statistics char2Stats = new Statistics { Character = character2, Deaths = 0, Kills = 12, TotalMoney = 44 };
-            Statistics char3Stats = new Statistics { Character = character2, Deaths = 4, Kills = 0, TotalMoney = 1 };
-            Statistics char4Stats = new Statistics { Character = character2, Deaths = 40, Kills = 43, TotalMoney = 0 };
-            Statistics char5Stats = new Statistics { Character = character2, Deaths = 70, Kills = 1, TotalMoney = 76 };
-            Statistics char6Stats = new Statistics { Character = character2, Deaths = 654, Kills = 0, TotalMoney = 1337 };
+            Statistics char3Stats = new Statistics { Character = character3, Deaths = 4, Kills = 0, TotalMoney = 1 };
+            Statistics char4Stats = new Statistics { Character = character4, Deaths = 40, Kills = 43, TotalMoney = 0 };
+            Statistics char5Stats = new Statistics { Character = character5, Deaths = 70, Kills = 1, TotalMoney = 76 };
+            Statistics char6Stats = new Statistics { Character = character6, Deaths = 654, Kills = 0, TotalMoney = 1337 };
 
             if (!context.Statistics.Any())
             {

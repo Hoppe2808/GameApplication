@@ -18,7 +18,7 @@ namespace GameWebApplication.Controllers.Views
             var charactersByUser = charController.GetCharacter().Where(character => character.UserId == userId).ToList();
             Data.StatisticsController statController = new Data.StatisticsController();
             var statistics = statController.GetStatistics().Where(stat => charactersByUser != null && charactersByUser.Select(character => character.Id).Contains(stat.Id)).ToList();
-
+            
             var viewModel = new StatisticsViewModel
             {
                 Characters = charactersByUser,
