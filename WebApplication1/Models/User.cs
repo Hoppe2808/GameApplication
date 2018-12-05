@@ -1,15 +1,13 @@
-﻿using System.Collections;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GameWebApplication.Models
 {
-    public class User : BaseModel
+    public class User : IdentityUser
     {
-        [Required]
-        public string Username { get; set; }
-        public string Password { get; set; }
 
-        //public ICollection<Character> Characters { get; set; }
+        public ICollection<Character> Characters { get; set; }
     }
 }

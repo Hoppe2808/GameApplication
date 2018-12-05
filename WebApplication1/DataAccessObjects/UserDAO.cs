@@ -18,7 +18,7 @@ namespace GameWebApplication.DataAccessObjects
             return db.Users;
         }
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return db.Users.Find(id);
         }
@@ -28,7 +28,7 @@ namespace GameWebApplication.DataAccessObjects
             db.Users.Add(user);
         }
 
-        public bool UpdateUser(int id, User user)
+        public bool UpdateUser(string id, User user)
         {
             db.Entry(user).State = EntityState.Modified;
 
@@ -55,7 +55,7 @@ namespace GameWebApplication.DataAccessObjects
             db.Users.Remove(user);
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string id)
         {
             return db.Users.Count(e => e.Id == id) > 0;
         }

@@ -24,7 +24,7 @@ namespace GameWebApplication.Controllers
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public async Task<IHttpActionResult> GetUser(string id)
         {
             var user = userDAO.GetUser(id);
             if (user == null)
@@ -36,14 +36,14 @@ namespace GameWebApplication.Controllers
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
+        public async Task<IHttpActionResult> PutUser(string id, User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Id)
+            if (!id.Equals(user.Id))
             {
                 return BadRequest();
             }
@@ -74,7 +74,7 @@ namespace GameWebApplication.Controllers
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> DeleteUser(int id)
+        public async Task<IHttpActionResult> DeleteUser(string id)
         {
             User user = userDAO.GetUser(id);
             if (user == null)

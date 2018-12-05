@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Web;
 using GameWebApplication.Models;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GameWebApplication.Migrations
 {
@@ -15,12 +17,11 @@ namespace GameWebApplication.Migrations
 
         protected override void Seed(GameWebApplicationContext context)
         {
-            User usr1 = new User { Username = "Sebastian", Password = "123" };
-            User usr2 = new User { Username = "Rune", Password = "abc" };
-            if (!context.Users.Any())
-            {
-                context.Users.Add(usr1); context.Users.Add(usr2);
-            }
+            var userManager = GetOwinContext().GetUserManager<AppUserManager>();
+            User usr1 = new User { UserName = "Sebastian"};
+            User usr2 = new User { UserName = "Rune"};
+            userManager.CreateAsync(usr1, "123");
+            userManager.CreateAsync(usr2, "456");
 
             Inventory inventory1 = new Inventory { Gold = 30 };
             Inventory inventory2 = new Inventory { Gold = 231 };
