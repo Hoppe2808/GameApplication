@@ -6,14 +6,14 @@ namespace GameWebApplication.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Update001 : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
+    public sealed partial class Auth_Changes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update001));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Auth_Changes));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812021327060_Update001"; }
+            get { return "201812051303137_Auth_Changes"; }
         }
         
         string IMigrationMetadata.Source
