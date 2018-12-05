@@ -9,8 +9,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
+using GameWebApplication.Controllers.Data;
+using GameWebApplication.Models;
 
-namespace GameWebApplication.Controllers
+namespace GameWebApplication.Controllers.Views
 {
     public class HomeController : Controller
     {
@@ -43,6 +45,18 @@ namespace GameWebApplication.Controllers
             return Redirect(Url.Action("Index"));
         }
 
+                foreach (User user in users)
+                {
+                    if (user.Username.Equals(username) && user.Password.Equals(password))
+                    {
+                        Response.Redirect(String.Format("statistics/{0}", user.Id));
+                        ViewBag.Title = "Statistics Page";
+                    }   return View();
+                }
+            }
+            message = Request.Form["message"];
+            message = "Login Failed";
+            return View();
         public ActionResult UsersPage()
         {
             ViewBag.Title = "Users Page";
@@ -78,5 +92,20 @@ namespace GameWebApplication.Controllers
 
             return View();
         }
+
+        public ActionResult StatisticsPage()
+        {
+            ViewBag.Title = "Stats Page";
+
+            return Content("There are no statistics if you are not logged in!");
+        }
+
+        public ActionResult CharacterPage()
+        {
+            ViewBag.Title = "Stats Page";
+
+            return View();
+        }
+
     }
 }

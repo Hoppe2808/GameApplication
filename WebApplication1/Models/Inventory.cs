@@ -9,6 +9,6 @@ namespace GameWebApplication.Models
         public int Gold { get; set; }
         
         //Navigation property
-        //public ICollection<Item> Items { get; set; }
+        public ICollection<Equipment> Equipments { get; set; }
     }
 }

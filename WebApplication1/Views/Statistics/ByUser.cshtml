@@ -1,0 +1,30 @@
+﻿@model GameWebApplication.ViewModels.StatisticsViewModel
+
+@{
+    ViewBag.Title = "Stats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Characters[0].Name</h2>
+
+
+<table id="MasterDataGrid">
+    <thead>
+        <tr>
+            <th>Character</th>
+            <th>Kills</th>
+            <th>Deaths</th>
+            <th>Total gold</th>
+        </tr>
+    </thead>
+    @foreach (var character in Model.Characters)
+    {
+        var stats = Model.Statistics.Find(stat => stat.CharacterId == character.Id);
+        <tr>
+            <td class="width200">@character.Name</td>
+            <td>@stats.Kills</td>
+            <td>@stats.Deaths</td>
+            <td>@stats.TotalMoney</td>
+        </tr>
+    }
+</table>
