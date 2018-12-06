@@ -37,18 +37,11 @@ namespace GameWebApplication.Controllers.Views
                     //use the instance that has been created. 
                     authManager.SignIn(
                         new AuthenticationProperties { IsPersistent = false }, ident);
-                    return RedirectToAction("ByUser", "Statistics");
+                    return RedirectToAction("UsersPage", "UsersPage");
                 }
             }
             ModelState.AddModelError("", "Invalid username or password");
             return Redirect(Url.Action("Index"));
-        }
-
-        public ActionResult UsersPage()
-        {
-            ViewBag.Title = "Users Page";
-
-            return View();
         }
 
         public ActionResult CharacterPage()
@@ -59,18 +52,6 @@ namespace GameWebApplication.Controllers.Views
             ViewBag.Title = "Character Page";
 
             return View(characters);
-        }
-
-        public ActionResult AdminPage()
-        {
-            UsersController usersController = new UsersController();
-            List<User> users = usersController.GetUsers();
-
-
-
-            ViewBag.Title = "Admin Page";
-
-            return View(users);
         }
 
         public ActionResult CreateUser()

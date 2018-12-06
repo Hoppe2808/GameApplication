@@ -504,6 +504,7 @@
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\GameWebApplicationContext.cs" />
+    <Compile Include="Models\ViewModels\EditUserViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterUserViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -602,7 +603,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\UsersPage.cshtml" />
+    <Content Include="Views\UsersPage\UsersPage.cshtml" />
     <Content Include="Views\Home\CharacterPage.cshtml" />
     <Content Include="Views\Statistics\ByUser.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
@@ -617,6 +618,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Register\RegisterUserPage.cshtml" />
+    <Content Include="Views\UsersPage\EditUserPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

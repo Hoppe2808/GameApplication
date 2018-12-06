@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Users View";
+}
+
+<h2>Users Page</h2>
+<p>Navigate through your account from here</p>
+
+
+<div class="container">
+    @using (Html.BeginForm("ByUser", "Statistics", FormMethod.Post, new { @class = "statistics_class" }))
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Show statistics" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("EditUserPage", "UsersPage", FormMethod.Post, new { @class = "statistics_class" }))
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit Account" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>
