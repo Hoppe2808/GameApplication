@@ -2,6 +2,8 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using GameWebApplication.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace GameWebApplication.Migrations
@@ -15,12 +17,26 @@ namespace GameWebApplication.Migrations
 
         protected override void Seed(GameWebApplicationContext context)
         {
-            //var userManager = GetOwinContext().GetUserManager<AppUserManager>();
-            User usr1 = new User { Id = "1", UserName = "Sebastian", PasswordHash = "123456"};
-            User usr2 = new User { Id = "2", UserName = "Rune", };
-            //userManager.CreateAsync(usr1, "123");
-            //userManager.CreateAsync(usr2, "456")
-            User usr3 = context.Users.Find("9ba716a5-c9ef-4cbd-9f79-548f80764c3e");
+            if (!context.Roles.Any(r => r.Name == "admin") && !context.Roles.Any(r => r.Name == "default"))
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                var role = new IdentityRole { Name = "admin" };
+                var roleDefault = new IdentityRole { Name = "default" };
+
+                roleManager.Create(role);
+                roleManager.Create(roleDefault);
+            }
+
+                var userStore = new UserStore<User>(context);
+                var userManager = new UserManager<User>(userStore);
+                var user = new User { UserName = "admin" };
+
+            if (!context.Users.Any(u => u.UserName == "admin"))
+            {
+                userManager.Create(user, "test1234");
+                userManager.AddToRole(user.Id, "Admin");
+            }
 
             Inventory inventory1 = new Inventory { Gold = 30 };
             Inventory inventory2 = new Inventory { Gold = 231 };
@@ -34,12 +50,12 @@ namespace GameWebApplication.Migrations
                 context.Inventory.Add(inventory1); context.Inventory.Add(inventory2); context.Inventory.Add(inventory3); context.Inventory.Add(inventory4); context.Inventory.Add(inventory5); context.Inventory.Add(inventory6);
             }
 
-            Character character1 = new Character { Name = "MonsterSlayer", UserId = usr3.Id, Inventory = inventory1 };
-            Character character2 = new Character { Name = "Kirneh", UserId = usr3.Id, Inventory = inventory2 };
-            Character character3 = new Character { Name = "Jaa", UserId = usr3.Id, Inventory = inventory3 };
-            Character character4 = new Character { Name = "Neee", UserId = usr3.Id, Inventory = inventory2 };
-            Character character5 = new Character { Name = "ADff", UserId = usr3.Id, Inventory = inventory5 };
-            Character character6 = new Character { Name = "Redrum", UserId = usr3.Id, Inventory = inventory6 };
+            Character character1 = new Character { Name = "MonsterSlayer", UserId = user.Id, Inventory = inventory1 };
+            Character character2 = new Character { Name = "Kirneh", UserId = user.Id, Inventory = inventory2 };
+            Character character3 = new Character { Name = "Jaa", UserId = user.Id, Inventory = inventory3 };
+            Character character4 = new Character { Name = "Neee", UserId = user.Id, Inventory = inventory2 };
+            Character character5 = new Character { Name = "ADff", UserId = user.Id, Inventory = inventory5 };
+            Character character6 = new Character { Name = "Redrum", UserId = user.Id, Inventory = inventory6 };
 
             if (!context.Characters.Any())
             {

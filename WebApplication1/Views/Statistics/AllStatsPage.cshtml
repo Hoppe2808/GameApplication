@@ -1,0 +1,62 @@
+﻿@@model GameWebApplication.Models.ViewModels.AllStatsViewModel
+@{
+    ViewBag.Title = "AllStatsPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllStatsPage</h2>
+
+<table id="Characters" class="tg">
+    <thead>
+        <tr>
+            <th>Character</th>
+            <th>Kills</th>
+            <th>Deaths</th>
+            <th>Total gold</th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Users.Count(); i++)
+    {
+        var stats = Model.Statistics.Find(i);
+        <tr>
+            <td class="width200">@Model.Users.Find(i).UserName</td>
+            <td>@stats.Kills</td>
+            <td>@stats.Deaths</td>
+            <td>@stats.TotalMoney</td>
+        </tr>
+    }
+</table>
+
+
+<style>
+    #Characters {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #Characters td, #Characters th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+            #Characters td:nth-child(1) {
+                font-weight: bold;
+            }
+
+        #Characters tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #Characters tr:hover {
+            background-color: #ddd;
+        }
+
+        #Characters th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4e4e4e;
+            color: #fffff0;
+        }
+</style>

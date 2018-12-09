@@ -434,6 +434,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppRoleManager.cs" />
     <Compile Include="AppUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -477,6 +478,7 @@
     <Compile Include="Controllers\Data\UsersController.cs" />
     <Compile Include="Controllers\Views\RegisterController.cs" />
     <Compile Include="Controllers\Views\StatisticsController.cs" />
+    <Compile Include="Controllers\Views\AdminPageController.cs" />
     <Compile Include="Controllers\Views\UsersPageController.cs" />
     <Compile Include="DataAccessObjects\CharacterDao.cs" />
     <Compile Include="DataAccessObjects\EquipmentDao.cs" />
@@ -504,6 +506,7 @@
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\GameWebApplicationContext.cs" />
+    <Compile Include="Models\ViewModels\AllStatsViewModel.cs" />
     <Compile Include="Models\ViewModels\EditUserViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterUserViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
@@ -607,7 +610,7 @@
     <Content Include="Views\Home\CharacterPage.cshtml" />
     <Content Include="Views\Statistics\ByUser.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Home\AdminPage.cshtml" />
+    <Content Include="Views\AdminPage\AdminPage.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -619,6 +622,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Register\RegisterUserPage.cshtml" />
     <Content Include="Views\UsersPage\EditUserPage.cshtml" />
+    <Content Include="Views\Statistics\AllStatsPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using GameWebApplication.Controllers.Data;
+using System.Web.UI.WebControls;
 
 namespace GameWebApplication.Controllers.Views
 {
@@ -37,7 +38,14 @@ namespace GameWebApplication.Controllers.Views
                     //use the instance that has been created. 
                     authManager.SignIn(
                         new AuthenticationProperties { IsPersistent = false }, ident);
-                    return RedirectToAction("UsersPage", "UsersPage");
+                    if (userManager.IsInRole(user.Id, "admin"))
+                    {
+                        return RedirectToAction("AdminPage", "AdminPage");
+                    }
+                    else
+                    {
+                        return RedirectToAction("UsersPage", "UsersPage");
+                    }
                 }
             }
             ModelState.AddModelError("", "Invalid username or password");
