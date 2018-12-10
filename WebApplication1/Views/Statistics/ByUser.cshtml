@@ -1,4 +1,5 @@
 ﻿@using GameWebApplication.Models
+@using Microsoft.AspNetCore.Mvc
 @model GameWebApplication.ViewModels.StatisticsViewModel
 
 @{
@@ -13,23 +14,6 @@
 
 
 
-<select id="Select1">
-    @foreach (var character in chars)
-    {
-        <option>@character.Name</option>
-    }
-   
-
-</select>
-
-
-@* <asp:DropDownList ID="DropDownList1" runat="server" width="145px"> *@
-@*     <asp:ListItem Text=@chars[0].Name Value=@chars[0] Selected="true"></asp:ListItem> *@
-@* </asp:DropDownList> *@
-
-@* @Html.DropDownList("Characters", *@
-@*     new SelectList(chars), *@
-@*     "Select Character") *@
 
 <table id="Characters" class="tg">
     <thead>

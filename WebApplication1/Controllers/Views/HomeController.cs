@@ -29,27 +29,31 @@ namespace GameWebApplication.Controllers.Views
             {
                 var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
                 var authManager = HttpContext.GetOwinContext().Authentication;
-
-                User user = userManager.Find(input.UserName, input.Password);
-                if (user != null)
+                if (input.UserName != null && input.Password != null)
                 {
-                    var ident = userManager.CreateIdentity(user,
-                        DefaultAuthenticationTypes.ApplicationCookie);
-                    //use the instance that has been created. 
-                    authManager.SignIn(
-                        new AuthenticationProperties { IsPersistent = false }, ident);
-                    if (userManager.IsInRole(user.Id, "admin"))
+                    User user = userManager.Find(input.UserName, input.Password);
+                    if (user != null)
                     {
-                        return RedirectToAction("AdminPage", "AdminPage");
-                    }
-                    else
-                    {
+                        var ident = userManager.CreateIdentity(user,
+                            DefaultAuthenticationTypes.ApplicationCookie);
+                        //use the instance that has been created. 
+                        authManager.SignIn(
+                            new AuthenticationProperties { IsPersistent = false }, ident);
+                        if (userManager.IsInRole(user.Id, "admin"))
+                        {
+                            return RedirectToAction("AdminPage", "AdminPage");
+                        }
                         return RedirectToAction("UsersPage", "UsersPage");
                     }
                 }
+                else
+                {
+                    ModelState.AddModelError("UserName", "Please fill in both user name and password");
+                }
             }
+
             ModelState.AddModelError("", "Invalid username or password");
-            return Redirect(Url.Action("Index"));
+            return RedirectToAction("Index");
         }
 
         public ActionResult CharacterPage()

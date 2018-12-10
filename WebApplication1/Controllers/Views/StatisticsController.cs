@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.WebPages;
 using GameWebApplication.Controllers.Data;
 using GameWebApplication.Models;
 using GameWebApplication.Models.ViewModels;
@@ -44,8 +43,9 @@ namespace GameWebApplication.Controllers.Views
 
             AllStatsViewModel viewModel = new AllStatsViewModel
             {
-                Usernames = new List<string>(),
-                Statistics = new List<Statistics>()
+                Users = new List<User>(),
+                Statistics = new List<Statistics>(),
+                Characters = new List<Character>()
             };
 
             List<User> users = uc.GetUsers();
@@ -54,29 +54,26 @@ namespace GameWebApplication.Controllers.Views
             foreach (User user in users)
             {
                 var charactersByUser = cc.GetCharacter().Where(character => character.UserId.Equals(user.Id)).ToList();
-                List<Statistics> statsForUser = sc.GetStatistics().Where(stat => charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
-                Statistics collectedStats = new Statistics();
+                List<Statistics> statsForCharacter = sc.GetStatistics().Where(stat => charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
 
-                if (statsForUser.Count() == 0)
-                {
-                    collectedStats.Deaths += 0;
-                    collectedStats.Kills += 0;
-                    collectedStats.TotalMoney += 0;
-                }
-                else
-                {
-                    foreach (Statistics stat in statsForUser)
-                    {
-                        collectedStats.Deaths += stat.Deaths;
-                        collectedStats.Kills += stat.Kills;
-                        collectedStats.TotalMoney += stat.TotalMoney;
-                    }
-                }
-                viewModel.Usernames.Add(user.UserName);
-                viewModel.Statistics.Add(collectedStats);
+                viewModel.Users.Add(user);
+                viewModel.Statistics.AddRange(statsForCharacter);
+                viewModel.Characters.AddRange(charactersByUser);
             }
 
             return View(viewModel);
+        }
+
+        public ActionResult EditCharacter(EditCharacterViewModel model)
+        {
+
+            return View(model);
+        }
+
+        public ActionResult ChangeCharacterName(EditCharacterViewModel input)
+        {
+
+            return RedirectToAction("EditCharacter");
         }
 
     }

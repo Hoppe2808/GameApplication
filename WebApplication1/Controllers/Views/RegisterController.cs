@@ -32,7 +32,8 @@ namespace GameWebApplication.Controllers.Views
                 if (existingUser != null)
                 {
                     ModelState.AddModelError("", "User alredy exists");
-                    return Redirect(Url.Action("RegisterUserPage"));
+//                    return Redirect(Url.Action("RegisterUserPage"));
+                    return RedirectToAction("RegisterUserPage");
                 }
                 else if (!userData.Password.Equals(userData.ConfirmPassword))
                 {
