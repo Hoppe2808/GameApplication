@@ -8,7 +8,6 @@ namespace GameWebApplication.Models
         [Required]
         public int Gold { get; set; }
         
-        //Navigation property
         public ICollection<Equipment> Equipments { get; set; }
     }
 }

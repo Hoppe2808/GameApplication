@@ -17,11 +17,20 @@
         </div>
     }
 
-    @using (Html.BeginForm("EditUserPage", "UsersPage", FormMethod.Post, new { @class = "statistics_class" }))
+    @using (Html.BeginForm("EditUserPage", "UsersPage", FormMethod.Post, new { @class = "user_class" }))
     {
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Edit Account" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("InventoryPage", "Inventory", FormMethod.Post, new { @class = "user_class" }))
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="View characters inventory" class="btn btn-default" />
             </div>
         </div>
     }

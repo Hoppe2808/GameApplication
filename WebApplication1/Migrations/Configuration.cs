@@ -33,13 +33,18 @@ namespace GameWebApplication.Migrations
             var adminUser = new User { UserName = "admin" };
             var defaultUser = new User { UserName = "default" };
 
-            if (!context.Users.Any(u => u.UserName == "admin") && !context.Users.Any(u => u.UserName == "default"))
+            if (!context.Users.Any(u => u.UserName == "admin"))
             {
                 userManager.Create(adminUser, "test1234");
                 userManager.AddToRole(adminUser.Id, "Admin");
+            }
+            else if (!context.Users.Any(u => u.UserName == "default"))
+            {
                 userManager.Create(defaultUser, "test1234");
                 userManager.AddToRole(defaultUser.Id, "Default");
             }
+            adminUser = userManager.Find("admin", "test1234");
+            defaultUser = userManager.Find("default", "test1234");
 
             Inventory inventory1 = new Inventory { Gold = 30 };
             Inventory inventory2 = new Inventory { Gold = 231 };

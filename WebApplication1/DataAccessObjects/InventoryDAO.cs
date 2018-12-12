@@ -1,5 +1,6 @@
 ﻿using GameWebApplication.Models;
 using System.Linq;
+using System.Data.Entity;
 
 namespace GameWebApplication.DataAccessObjects
 {
@@ -16,6 +17,11 @@ namespace GameWebApplication.DataAccessObjects
         public Inventory GetInventory(int id)
         {
             return _db.Inventory.Find(id);
+        }
+
+        public Inventory GetInventoryWithEquipment(int id)
+        {
+            return _db.Inventory.Include(i => i.Equipments).Single(i => i.Id == id);
         }
 
         public Inventory AddInventory(Inventory inventory)

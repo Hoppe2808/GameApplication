@@ -477,6 +477,7 @@
     <Compile Include="Controllers\Data\StatisticsController.cs" />
     <Compile Include="Controllers\Data\UsersController.cs" />
     <Compile Include="Controllers\Views\RegisterController.cs" />
+    <Compile Include="Controllers\Views\InventoryController.cs" />
     <Compile Include="Controllers\Views\StatisticsController.cs" />
     <Compile Include="Controllers\Views\AdminPageController.cs" />
     <Compile Include="Controllers\Views\UsersPageController.cs" />
@@ -509,6 +510,7 @@
     <Compile Include="Models\ViewModels\AllStatsViewModel.cs" />
     <Compile Include="Models\ViewModels\EditCharacterViewModel.cs" />
     <Compile Include="Models\ViewModels\EditUserViewModel.cs" />
+    <Compile Include="Models\ViewModels\InventoryViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterUserViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -625,11 +627,11 @@
     <Content Include="Views\UsersPage\EditUserPage.cshtml" />
     <Content Include="Views\Statistics\AllStatsPage.cshtml" />
     <Content Include="Views\Statistics\EditCharacter.cshtml" />
+    <Content Include="Views\Inventory\InventoryPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Images\" />
-    <Folder Include="Views\Inventory\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

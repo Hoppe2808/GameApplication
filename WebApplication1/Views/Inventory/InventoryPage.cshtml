@@ -1,0 +1,63 @@
+﻿@using GameWebApplication.Models
+@model GameWebApplication.Models.ViewModels.InventoryViewModel
+
+@{
+    ViewBag.Title = "Inventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inventory</h2>
+
+@Html.DropDownListFor(m => m.selectedCharacter, new SelectList(Model.characters, "Id", "name"))
+
+<table id="Characters" class="tg">
+    <thead>
+        <tr>
+            <th>Inventory for Character</th>
+        </tr>
+    </thead>
+    @foreach (var character in Model.characters)
+    {
+
+        foreach (var item in character.Inventory.Equipments)
+        {
+            <tr>
+                <td>@item.Name</td>
+            </tr>
+        }
+    }
+</table>
+
+
+<style>
+    #Characters {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #Characters td, #Characters th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+            #Characters td:nth-child(1) {
+                font-weight: bold;
+            }
+
+        #Characters tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #Characters tr:hover {
+            background-color: #ddd;
+        }
+
+        #Characters th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4e4e4e;
+            color: #fffff0;
+        }
+</style>

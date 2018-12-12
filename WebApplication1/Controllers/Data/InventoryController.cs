@@ -28,6 +28,17 @@ namespace GameWebApplication.Controllers.Data
             return Ok(inventory);
         }
 
+        [ResponseType(typeof(Inventory))]
+        public IHttpActionResult GetInventoryWithEquipment(int id)
+        {
+            var inventory = _inventoryDao.GetInventoryWithEquipment(id);
+            if (inventory == null)
+            {
+                return NotFound();
+            }
+            return Ok(inventory);
+        }
+
         // POST: api/Inventories
         [ResponseType(typeof(Inventory))]
         public IHttpActionResult CreateInventory(Inventory inventory)
