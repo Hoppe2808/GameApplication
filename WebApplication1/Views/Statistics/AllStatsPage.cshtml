@@ -15,11 +15,11 @@
             <th>Total gold</th>
         </tr>
     </thead>
-    @for (int i = 0; i < Model.Users.Count(); i++)
+    @for (int i = 0; i < Model.Usernames.Count(); i++)
     {
         var stats = Model.Statistics.Find(i);
         <tr>
-            <td class="width200">@Model.Users.Find(i).UserName</td>
+            <td class="width200">@Model.Usernames.Find(i)</td>
             <td>@stats.Kills</td>
             <td>@stats.Deaths</td>
             <td>@stats.TotalMoney</td>
