@@ -13,10 +13,20 @@ namespace GameWebApplication.Controllers.Views
 {
     public class AdminPageController : Controller
     {
+        [Authorize(Roles = "admin")]
         [Route("AdminPage/AdminPage")]
         public ActionResult AdminPage()
         {
-            return View();
+            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            var authManager = HttpContext.GetOwinContext().Authentication;
+
+            bool validateUser = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (validateUser)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

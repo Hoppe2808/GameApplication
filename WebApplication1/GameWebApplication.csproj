@@ -628,6 +628,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Images\" />
     <Folder Include="Views\Inventory\" />
   </ItemGroup>
   <ItemGroup>

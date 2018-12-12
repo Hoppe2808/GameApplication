@@ -12,6 +12,7 @@ namespace GameWebApplication.Controllers.Views
 {
     public class StatisticsController : Controller
     {
+        [Authorize(Roles = "default")]
         [Route("Statistics")]
         public ActionResult ByUser()
         {

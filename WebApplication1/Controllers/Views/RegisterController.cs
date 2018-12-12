@@ -14,11 +14,11 @@ namespace GameWebApplication.Controllers.Views
     {
 
         [Route("Register")]
-        public ActionResult RegisterUserPage()
+        public ActionResult RegisterUserPage(RegisterUserViewModel model)
         {
             ViewBag.Title = "Register Page";
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -28,28 +28,44 @@ namespace GameWebApplication.Controllers.Views
             {
                 var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
 
+                if(string.IsNullOrEmpty(userData.Username) || string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.ConfirmPassword))
+                {
+                    ModelState.AddModelError("empty_fields", "Please fill out all fields");
+                    return View("RegisterUserPage", userData);
+                }
+
                 User existingUser = userManager.FindByName(userData.Username);
                 if (existingUser != null)
                 {
-                    ModelState.AddModelError("", "User alredy exists");
-//                    return Redirect(Url.Action("RegisterUserPage"));
-                    return RedirectToAction("RegisterUserPage");
+                    ModelState.AddModelError("user_exists", "User alredy exists");
+                    return View("RegisterUserPage", userData);
                 }
                 else if (!userData.Password.Equals(userData.ConfirmPassword))
                 {
-                    ModelState.AddModelError("", "The two passwords entered doesn't match");
-                    return Redirect(Url.Action("RegisterUserPage"));
+                    ModelState.AddModelError("pwds_dont_match", "The two passwords entered doesn't match");
+                    return View("RegisterUserPage", userData);
                 }
                 User user = new User { UserName = userData.Username };
                 IdentityResult result = await userManager.CreateAsync(user, userData.Password);
 
+
                 if (result.Succeeded)
                 {
-                    string test = "test";
+                    if (userData.Admin)
+                    {
+                        userManager.AddToRole(userManager.FindByName(user.UserName).Id, "admin");
+                    }
+                    else
+                    {
+                        userManager.AddToRole(userManager.FindByName(user.UserName).Id, "default");
+                    }
+                    ModelState.AddModelError("identity_success", "User successfully created..");
+                    return View("RegisterUserPage", userData);
                 }
                 else
                 {
-                    String test = "test2";
+                    ModelState.AddModelError("identity_error", result.Errors.First());
+                    return View("RegisterUserPage", userData);
                 }
             }
             return Redirect(Url.Action("Index", "Home"));
