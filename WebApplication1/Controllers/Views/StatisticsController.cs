@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using GameWebApplication.Controllers.Data;
 using GameWebApplication.Models;
@@ -65,16 +66,61 @@ namespace GameWebApplication.Controllers.Views
             return View(viewModel);
         }
 
-        public ActionResult EditCharacter(EditCharacterViewModel model)
+        [HttpGet]
+        public ActionResult EditCharacter(int id)
         {
+            CharacterController characterController = new CharacterController();
+            Data.StatisticsController statisticsController = new Data.StatisticsController();
+            var character = characterController.GetCharacter(id) as OkNegotiatedContentResult<Character>;
+            if (character == null)
+            {
+                ModelState.AddModelError("character_fetch", "Could not find the character in the database");
+                return RedirectToAction("AllStatsPage");
+            }
+
+            Character characterToEdit = character.Content;
+            Statistics statsForCharacter = statisticsController.GetStatistics().Find(stat => stat.CharacterId == id);
+
+            EditCharacterViewModel model = new EditCharacterViewModel
+            {
+                Id = id,
+                CharacterName = characterToEdit.Name,
+                Kills = statsForCharacter.Kills,
+                Deaths = statsForCharacter.Deaths,
+                TotalMoney = statsForCharacter.TotalMoney
+            };
 
             return View(model);
         }
 
-        public ActionResult ChangeCharacterName(EditCharacterViewModel input)
+        [HttpPost]
+        public ActionResult EditCharacter(int id, EditCharacterViewModel input)
         {
+            if (ModelState.IsValid)
+            {   
+                CharacterController characterController = new CharacterController();
+                Data.StatisticsController statisticsController = new Data.StatisticsController();
+                var character = characterController.GetCharacter(id) as OkNegotiatedContentResult<Character>;
+                if (character == null)
+                {
+                    ModelState.AddModelError("character_fetch", "Could not find the character in the database");
+                    return RedirectToAction("AllStatsPage");
+                }
 
-            return RedirectToAction("EditCharacter");
+                Character characterToEdit = character.Content;
+                Statistics statsForCharacter = statisticsController.GetStatistics().Find(stat => stat.CharacterId == id);
+
+                characterToEdit.Name = input.CharacterName;
+                characterController.UpdateCharacter(id, characterToEdit);
+                statsForCharacter.Deaths = input.Deaths;
+                statsForCharacter.Kills = input.Kills;
+                statsForCharacter.TotalMoney = input.TotalMoney;
+                statisticsController.UpdateStatistics(statsForCharacter.Id, statsForCharacter);
+                ModelState.AddModelError("update_success", "Character successfully updated!");
+            }
+            
+
+            return View("EditCharacter", input);
         }
 
     }
