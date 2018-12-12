@@ -3,39 +3,62 @@
 @{
     /**/
 
-    ViewBag.Title = "Edit character";
+    ViewBag.Title = $"Edit {Model.CharacterName}";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<h2>Edit character</h2>
+<h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("ChangeCharacterName", "Statistics", FormMethod.Post, new { @class = "changeChar_class" }))
+@using (Html.BeginForm("EditCharacter", "Statistics", FormMethod.Post, new { @class = "changeChar_class" }))
 {
-@*     <div class="form-group"> *@
-@*         <label asp-for="CharacterName"></label> *@
-@*         <div class="col-md-10"> *@
-@*             @Html.TextBoxFor(m => m.CharacterName, new { @class = "form-control" }) *@
-@*             @Html.ValidationMessageFor(m => m.CharacterName, "", new { @class = "text-danger" }) *@
-@*         </div> *@
-@*     </div> *@
-<form asp-action="ChangeCharacterName" asp-controller="Statistics">
-    <label asp-for="CharacterName">Name</label>
-    <input asp-for="CharacterName" placeholder="CharacterName" class="form-control" />
-    <label asp-for="Kills">Kills</label>
-    <input asp-for="Kills" placeholder="Kills" class="form-control" />
-    <label asp-for="Deaths">Deaths</label>
-    <input asp-for="Deaths" placeholder="Deaths" class="form-control" />
-    <label asp-for="TotalMoney">Total money</label>
-    <input asp-for="TotalMoney" placeholder="TotalMoney" class="form-control" />
-    <input type="submit" class="btn btn-default" value="Change character name" />
-</form>
+    <div class="form-group">
+        <label asp-for="CharacterName">Name</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CharacterName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CharacterName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Kills, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Kills, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Kills, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Deaths, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Deaths, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Deaths, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotalMoney, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TotalMoney, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TotalMoney, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-@*     <div class="form-group"> *@
-@*         <div class="col-md-offset-2 col-md-10"> *@
-@*             <input type="submit" value="Change character name" class="btn btn-default" /> *@
-@*         </div> *@
-@*     </div> *@
+    @* <form asp-controller="Statistics" asp-action="DoUpdateCharacter"> *@
+    @*     <label asp-for="CharacterName">Name</label> *@
+    @*     <input asp-for="CharacterName" value="@Model.CharacterName" class="form-control" /> *@
+    @*     <label asp-for="Kills">Kills</label> *@
+    @*     <input asp-for="Kills" value="@Model.Kills" class="form-control" /> *@
+    @*     <label asp-for="Deaths">Deaths</label> *@
+    @*     <input asp-for="Deaths" value="@Model.Deaths" class="form-control" /> *@
+    @*     <label asp-for="TotalMoney">Total money</label> *@
+    @*     <input asp-for="TotalMoney" value="@Model.TotalMoney" class="form-control" /> *@
+    @*     <input type="submit" class="btn btn-default" value="Update character" /> *@
+    @* </form> *@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update character" class="btn btn-default" />
+        </div>
+    </div>
+    @Html.ValidationSummary()
 }
 
 @* @using (Html.BeginForm("ChangeStatistics", "AdminPage", FormMethod.Post, new { @class = "changePsw_class" })) *@

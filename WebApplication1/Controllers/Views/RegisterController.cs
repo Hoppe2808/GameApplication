@@ -42,7 +42,7 @@ namespace GameWebApplication.Controllers.Views
                 }
                 else if (!userData.Password.Equals(userData.ConfirmPassword))
                 {
-                    ModelState.AddModelError("pwds_dont_match", "The two passwords entered doesn't match");
+                    ModelState.AddModelError("pwds_dont_match", "The two passwords entered do not match");
                     return View("RegisterUserPage", userData);
                 }
                 User user = new User { UserName = userData.Username };
