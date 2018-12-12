@@ -13,9 +13,29 @@ namespace GameWebApplication.Controllers.Views
         [Route("UsersPage/UsersPage")]
         public ActionResult UsersPage()
         {
-            return View();
+            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            var authManager = HttpContext.GetOwinContext().Authentication;
+
+            string userId = authManager.User.Identity.GetUserId();
+
+            bool validateUser = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (validateUser)
+            {
+                bool isAdmin = userManager.IsInRole(userId, "admin");
+                if (isAdmin)
+                {
+                    return RedirectToAction("AdminPage", "AdminPage");
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [Authorize(Roles = "default")]
         [Route("UsersPage/EditUsersPage")]
         public ActionResult EditUserPage()
         {

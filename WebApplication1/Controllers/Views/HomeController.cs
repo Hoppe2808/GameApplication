@@ -16,9 +16,13 @@ namespace GameWebApplication.Controllers.Views
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(UserViewModel model)
         {
-            return View();
+            var authManager = HttpContext.GetOwinContext().Authentication;
+
+            authManager.SignOut();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -48,12 +52,12 @@ namespace GameWebApplication.Controllers.Views
                 }
                 else
                 {
-                    ModelState.AddModelError("UserName", "Please fill in both user name and password");
+                    ModelState.AddModelError("fill_both", "Please fill in both user name and password");
                 }
             }
 
-            ModelState.AddModelError("", "Invalid username or password");
-            return RedirectToAction("Index");
+            ModelState.AddModelError("wrong_info", "Invalid username or password");
+            return View("Index", input);
         }
 
         public ActionResult CharacterPage()

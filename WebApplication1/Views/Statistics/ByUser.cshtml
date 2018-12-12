@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Characters[0].Name</h2>
+<h2>@if (Model.Characters.Count() > 0) { Model.Characters[0].Name;  }</h2>
 @{
     var chars = Model.Characters;
 }
