@@ -38,7 +38,7 @@ namespace GameWebApplication.Migrations
                 userManager.Create(adminUser, "test1234");
                 userManager.AddToRole(adminUser.Id, "Admin");
             }
-            else if (!context.Users.Any(u => u.UserName == "default"))
+            if (!context.Users.Any(u => u.UserName == "default"))
             {
                 userManager.Create(defaultUser, "test1234");
                 userManager.AddToRole(defaultUser.Id, "Default");
@@ -61,7 +61,7 @@ namespace GameWebApplication.Migrations
             Character character1 = new Character { Name = "MonsterSlayer", UserId = adminUser.Id, Inventory = inventory1 };
             Character character2 = new Character { Name = "Kirneh", UserId = adminUser.Id, Inventory = inventory2 };
             Character character3 = new Character { Name = "Jaa", UserId = adminUser.Id, Inventory = inventory3 };
-            Character character4 = new Character { Name = "Neee", UserId = defaultUser.Id, Inventory = inventory2 };
+            Character character4 = new Character { Name = "Neee", UserId = defaultUser.Id, Inventory = inventory4 };
             Character character5 = new Character { Name = "ADff", UserId = defaultUser.Id, Inventory = inventory5 };
             Character character6 = new Character { Name = "Redrum", UserId = defaultUser.Id, Inventory = inventory6 };
 
@@ -71,8 +71,8 @@ namespace GameWebApplication.Migrations
                 context.Characters.Add(character4); context.Characters.Add(character5); context.Characters.Add(character6);
             }
 
-            Equipment item1 = new Equipment { Name = "Reaper of Souls", Inventory = inventory1 };
-            Equipment item2 = new Equipment { Name = "Psykosvaerd", Inventory = inventory1 };
+            Equipment item1 = new Equipment { Name = "Reaper of Souls", Inventory = inventory5 };
+            Equipment item2 = new Equipment { Name = "Psykosvaerd", Inventory = inventory4 };
 
             if (!context.Equipment.Any())
             {

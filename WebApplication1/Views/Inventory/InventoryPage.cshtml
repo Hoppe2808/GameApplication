@@ -8,7 +8,17 @@
 
 <h2>Inventory</h2>
 
-@Html.DropDownListFor(m => m.selectedCharacter, new SelectList(Model.characters, "Id", "name"))
+@using (Html.BeginForm("InventoryPage", "Inventory", FormMethod.Post, new { @class = "inventory_class" }))
+{
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.selectedCharacter, new SelectList(Model.characters, "Id", "name"), new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Select Character" class="btn btn-default" />
+        </div>
+    </div>
+}
 
 <table id="Characters" class="tg">
     <thead>
@@ -16,15 +26,20 @@
             <th>Inventory for Character</th>
         </tr>
     </thead>
-    @foreach (var character in Model.characters)
+    @if (Model.selectedCharacter != null)
     {
-
-        foreach (var item in character.Inventory.Equipments)
+        foreach (var item in Model.selectedCharacter.Inventory.Equipments)
         {
             <tr>
                 <td>@item.Name</td>
             </tr>
         }
+    }
+    else
+    {
+        <tr>
+            <td>Select a character to display inventory</td>
+        </tr>
     }
 </table>
 

@@ -17,12 +17,11 @@ namespace GameWebApplication.Controllers.Views
     public class InventoryController : Controller
     {
         [Route("Inventory/InventoryPage")]
-        public ActionResult InventoryPage()
+        public ActionResult InventoryPage(InventoryViewModel viewModel)
         {
             var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
             var authManager = HttpContext.GetOwinContext().Authentication;
 
-            InventoryViewModel viewModel = new InventoryViewModel();
             CharacterController charController = new CharacterController();
             Data.InventoryController inventoryController = new Data.InventoryController();
 
@@ -49,6 +48,9 @@ namespace GameWebApplication.Controllers.Views
                 }
 
             }
+            var test = Request.Form["selectedCharacter"];
+            if (Request.Form["selectedCharacter"] != null)
+                viewModel.selectedCharacter = viewModel.characters.Where(character => character.Id.Equals(Int32.Parse(Request.Form["selectedCharacter"].ToString()))).First();
 
             return View(viewModel);
         }
