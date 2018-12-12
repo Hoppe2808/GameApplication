@@ -38,7 +38,7 @@
         {
             var stats = statistics.Find(stat => stat.CharacterId == character.Id);
 
-            <tr onclick="location.href = '@(Url.Action("EditCharacter", "Statistics", new EditCharacterViewModel { Character = character, Statistics = stats }))'">
+            <tr onclick="location.href = '@(Url.Action("EditCharacter", "Statistics", new {id = character.Id}))'">
                 <td></td>
                 <td class="width200">@character.Name</td>
                 <td>@stats.Kills</td>

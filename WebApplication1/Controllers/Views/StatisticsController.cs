@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using GameWebApplication.Controllers.Data;
 using GameWebApplication.Models;
@@ -64,13 +65,30 @@ namespace GameWebApplication.Controllers.Views
             return View(viewModel);
         }
 
-        public ActionResult EditCharacter(EditCharacterViewModel model)
+        public ActionResult EditCharacter(int id)
         {
+            CharacterController characterController = new CharacterController();
+            Data.StatisticsController statisticsController = new Data.StatisticsController();
+            var characterToEdit = (characterController.GetCharacter(id) as OkNegotiatedContentResult<Character>);
+            if (characterToEdit == null)
+            {
+
+//                return RedirectToAction();
+            }
+            var statsForCharacter = statisticsController.GetStatistics().Find(stat => stat.CharacterId == id);
+
+            var model = new EditCharacterViewModel
+            {
+                Character = characterToEdit,
+                Statistics = statsForCharacter,
+                CharacterName = characterToEdit.Name,
+                Kills = statsForCharacter.Kills
+            };
 
             return View(model);
         }
 
-        public ActionResult ChangeCharacterName(EditCharacterViewModel input)
+        public ActionResult ChangeCharacterName(Character input)
         {
 
             return RedirectToAction("EditCharacter");
