@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using GameWebApplication.Models;
 
-namespace GameWebApplication.Models.ViewModels
+namespace GameWebApplication.ViewModels
 {
     public class AllStatsViewModel
     {
-        public List<string> Usernames { get; set; }
+        public List<User> Users { get; set; }
         public List<Statistics> Statistics { get; set; }
+        public List<Character> Characters { get; set; }
     }
 }

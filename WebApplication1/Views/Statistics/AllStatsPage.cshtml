@@ -1,29 +1,53 @@
-﻿@@model GameWebApplication.Models.ViewModels.AllStatsViewModel
+﻿@using GameWebApplication.Models
+@using GameWebApplication.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc
+@@model GameWebApplication.Models.ViewModels.AllStatsViewModel
 @{
     ViewBag.Title = "AllStatsPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>AllStatsPage</h2>
+@{
+    List<User> users = Model.Users;
+    List<Statistics> statistics = Model.Statistics;
+    List<Character> characters = Model.Characters;
+}
 
 <table id="Characters" class="tg">
     <thead>
         <tr>
+            <th>User</th>
             <th>Character</th>
             <th>Kills</th>
             <th>Deaths</th>
             <th>Total gold</th>
         </tr>
     </thead>
-    @for (int i = 0; i < Model.Usernames.Count(); i++)
+    @foreach (var user in users)
     {
-        var stats = Model.Statistics.Find(i);
         <tr>
-            <td class="width200">@Model.Usernames.Find(i)</td>
-            <td>@stats.Kills</td>
-            <td>@stats.Deaths</td>
-            <td>@stats.TotalMoney</td>
+            <th>@user.UserName</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
+        List<Character> charsByUser = characters.FindAll(character => character.UserId == user.Id);
+        foreach (var character in charsByUser)
+        {
+            var stats = statistics.Find(stat => stat.CharacterId == character.Id);
+
+            <tr onclick="location.href = '@(Url.Action("EditCharacter", "Statistics", new EditCharacterViewModel { Character = character, Statistics = stats }))'">
+                <td></td>
+                <td class="width200">@character.Name</td>
+                <td>@stats.Kills</td>
+                <td>@stats.Deaths</td>
+                <td>@stats.TotalMoney</td>
+            </tr>
+        }
+
+
     }
 </table>
 

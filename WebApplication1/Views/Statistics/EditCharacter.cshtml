@@ -1,0 +1,58 @@
+﻿@using GameWebApplication.Models
+@model GameWebApplication.Models.ViewModels.EditCharacterViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "EditCharacterPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Edit character</h2>
+
+@using (Html.BeginForm("ChangeCharacterName", "Statistics", FormMethod.Post, new { @class = "changeChar_class" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Character, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Character, new { placeholder = @Model.Character == null ? "" : Model.Character.Name, @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Character.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Change character name" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("ChangeStatistics", "AdminPage", FormMethod.Post, new { @class = "changePsw_class" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Statistics.Kills, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Statistics.Kills, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Statistics.Kills, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Statistics.Deaths, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Statistics.Deaths, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Statistics.Deaths, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Statistics.TotalMoney, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Statistics.TotalMoney, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Statistics.TotalMoney, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Change statistics" class="btn btn-default" />
+        </div>
+    </div>
+}
