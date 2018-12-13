@@ -13,18 +13,14 @@ namespace GameWebApplication.Controllers.Views
 {
     public class StatisticsController : Controller
     {
-        private CharacterController charController = new CharacterController();
-        private Data.StatisticsController statController = new Data.StatisticsController();
-        private UsersController uc = new UsersController();
-
         [Route("Statistics")]
         public ActionResult ByUser()
         {
             var authManager = HttpContext.GetOwinContext().Authentication;
             string userId = authManager.User.Identity.GetUserId();
-            
+            CharacterController charController = new CharacterController();
             var charactersByUser = charController.GetCharacter().Where(character => character.UserId.Equals(userId)).ToList();
-            
+            Data.StatisticsController statController = new Data.StatisticsController();
             var statistics = statController.GetStatistics().Where(stat => charactersByUser.Count > 0 && charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
 
             var viewModel = new StatisticsViewModel
@@ -41,6 +37,10 @@ namespace GameWebApplication.Controllers.Views
         [Route("Statistics/AllStats")]
         public ActionResult AllStats()
         {
+            Data.UsersController usersController = new Data.UsersController();
+            CharacterController characterController = new CharacterController();
+            Data.StatisticsController statisticsController = new Data.StatisticsController();
+
             AllStatsViewModel viewModel = new AllStatsViewModel
             {
                 Users = new List<User>(),
@@ -48,13 +48,12 @@ namespace GameWebApplication.Controllers.Views
                 Characters = new List<Character>()
             };
 
-            List<User> users = uc.GetUsers();
-            List<Character> chars = charController.GetCharacter();
+            List<User> users = usersController.GetUsers();
 
             foreach (User user in users)
             {
-                var charactersByUser = charController.GetCharacter().Where(character => character.UserId.Equals(user.Id)).ToList();
-                List<Statistics> statsForCharacter = statController.GetStatistics().Where(stat => charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
+                var charactersByUser = characterController.GetCharacter().Where(character => character.UserId.Equals(user.Id)).ToList();
+                List<Statistics> statsForCharacter = statisticsController.GetStatistics().Where(stat => charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
 
                 viewModel.Users.Add(user);
                 viewModel.Statistics.AddRange(statsForCharacter);
@@ -67,7 +66,9 @@ namespace GameWebApplication.Controllers.Views
         [HttpGet]
         public ActionResult EditCharacter(int id)
         {
-            var character = charController.GetCharacter(id) as OkNegotiatedContentResult<Character>;
+            CharacterController characterController = new CharacterController();
+            Data.StatisticsController statisticsController = new Data.StatisticsController();
+            var character = characterController.GetCharacter(id) as OkNegotiatedContentResult<Character>;
             if (character == null)
             {
                 ModelState.AddModelError("character_fetch", "Could not find the character in the database");
@@ -75,7 +76,7 @@ namespace GameWebApplication.Controllers.Views
             }
 
             Character characterToEdit = character.Content;
-            Statistics statsForCharacter = statController.GetStatistics().Find(stat => stat.CharacterId == id);
+            Statistics statsForCharacter = statisticsController.GetStatistics().Find(stat => stat.CharacterId == id);
 
             EditCharacterViewModel model = new EditCharacterViewModel
             {
@@ -93,8 +94,10 @@ namespace GameWebApplication.Controllers.Views
         public ActionResult EditCharacter(int id, EditCharacterViewModel input)
         {
             if (ModelState.IsValid)
-            {   
-                var character = charController.GetCharacter(id) as OkNegotiatedContentResult<Character>;
+            {
+                CharacterController characterController = new CharacterController();
+                Data.StatisticsController statisticsController = new Data.StatisticsController();
+                var character = characterController.GetCharacter(id) as OkNegotiatedContentResult<Character>;
                 if (character == null)
                 {
                     ModelState.AddModelError("character_fetch", "Could not find the character in the database");
@@ -102,14 +105,14 @@ namespace GameWebApplication.Controllers.Views
                 }
 
                 Character characterToEdit = character.Content;
-                Statistics statsForCharacter = statController.GetStatistics().Find(stat => stat.CharacterId == id);
+                Statistics statsForCharacter = statisticsController.GetStatistics().Find(stat => stat.CharacterId == id);
 
                 characterToEdit.Name = input.CharacterName;
-                charController.UpdateCharacter(id, characterToEdit);
+                characterController.UpdateCharacter(id, characterToEdit);
                 statsForCharacter.Deaths = input.Deaths;
                 statsForCharacter.Kills = input.Kills;
                 statsForCharacter.TotalMoney = input.TotalMoney;
-                statController.UpdateStatistics(statsForCharacter.Id, statsForCharacter);
+                statisticsController.UpdateStatistics(statsForCharacter.Id, statsForCharacter);
                 ModelState.AddModelError("update_success", "Character successfully updated!");
             }
 
