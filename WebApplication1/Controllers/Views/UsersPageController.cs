@@ -13,39 +13,30 @@ namespace GameWebApplication.Controllers.Views
         [Route("UsersPage/UsersPage")]
         public ActionResult UsersPage()
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            var authManager = HttpContext.GetOwinContext().Authentication;
-
-            string userId = authManager.User.Identity.GetUserId();
-
             bool validateUser = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
             if (validateUser)
             {
-                bool isAdmin = userManager.IsInRole(userId, "admin");
-                if (isAdmin)
-                {
-                    return RedirectToAction("AdminPage", "AdminPage");
-                }
                 return View();
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles = "default")]
         [Route("UsersPage/EditUsersPage")]
-        public ActionResult EditUserPage()
+        public ActionResult EditUserPage(EditUserViewModel input)
         {
-            var authManager = HttpContext.GetOwinContext().Authentication;
+            if (input.UserName != null)
+            {
+                return View(input);
+            }
 
             EditUserViewModel user = new EditUserViewModel();
+            var authManager = HttpContext.GetOwinContext().Authentication;
             user.UserName = authManager.User.Identity.GetUserName();
 
             return View(user);
         }
+
 
         public ActionResult ChangeUsername(EditUserViewModel input)
         {
@@ -58,7 +49,7 @@ namespace GameWebApplication.Controllers.Views
 
             userManager.Update(user);
 
-            return Redirect(Url.Action("EditUserPage", "UsersPage"));
+            return RedirectToAction("EditUserPage", input);
         }
 
         public ActionResult ChangePassword(EditUserViewModel input)

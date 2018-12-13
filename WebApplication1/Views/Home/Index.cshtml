@@ -1,7 +1,7 @@
 ﻿@model GameWebApplication.Models.ViewModels.UserViewModel
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Super awesome HoppeGame manager";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,7 +15,7 @@ Here you will be able to login and view your game data.<br />
     <h4>Use a local account to log in.</h4>
     <hr />
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        <label class = "col-md-2 control-label">User name</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
         </div>

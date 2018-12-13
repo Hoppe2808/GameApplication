@@ -1,9 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "Users View";
+﻿@{
+    ViewBag.Title = "Users Page";
 }
 
-<h2>Users Page</h2>
+<h2>Users Page:</h2>
 <p>Navigate through your account from here</p>
 
 
@@ -33,5 +32,12 @@
                 <input type="submit" value="View characters inventory" class="btn btn-default" />
             </div>
         </div>
+    }
+    
+    @{
+        if (HttpContext.Current.User.IsInRole("admin"))
+        {
+            Html.RenderPartial("~/Views/AdminPage/_Admin.cshtml");
+        }
     }
 </div>

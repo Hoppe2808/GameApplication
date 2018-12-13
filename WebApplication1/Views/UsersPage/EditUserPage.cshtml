@@ -1,18 +1,16 @@
 ﻿@model GameWebApplication.Models.ViewModels.EditUserViewModel
 
 @{
-    /**/
-
-    ViewBag.Title = "EditUserPage";
+    ViewBag.Title = "Edit user";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditUserPage</h2>
+<h2>Edit "@Model.UserName":</h2>
 
 @using (Html.BeginForm("ChangeUsername", "UsersPage", FormMethod.Post, new { @class = "changeUsr_class" }))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        <label class="col-md-2 control-label">User name</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
@@ -28,17 +26,17 @@
 @using (Html.BeginForm("ChangePassword", "UsersPage", FormMethod.Post, new { @class = "changePsw_class" }))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.OldPassword, new { @class = "col-md-2 control-label" })
+        <label class="col-md-2 control-label">Old password</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.OldPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.OldPassword, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <label class = "col-md-2 control-label">New password</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
         </div>
     </div>
     <div class="form-group">

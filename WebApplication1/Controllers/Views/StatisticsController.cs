@@ -13,20 +13,19 @@ namespace GameWebApplication.Controllers.Views
 {
     public class StatisticsController : Controller
     {
-        [Authorize(Roles = "default")]
         [Route("Statistics")]
         public ActionResult ByUser()
         {
             var authManager = HttpContext.GetOwinContext().Authentication;
             string userId = authManager.User.Identity.GetUserId();
-            //            ViewBag.Title = "Statistics";
             CharacterController charController = new CharacterController();
             var charactersByUser = charController.GetCharacter().Where(character => character.UserId.Equals(userId)).ToList();
             Data.StatisticsController statController = new Data.StatisticsController();
-            var statistics = statController.GetStatistics().Where(stat => charactersByUser != null && charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
+            var statistics = statController.GetStatistics().Where(stat => charactersByUser.Count > 0 && charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
             
             var viewModel = new StatisticsViewModel
             {
+                UserName = authManager.User.Identity.Name,
                 Characters = charactersByUser,
                 Statistics = statistics
             };
@@ -119,7 +118,6 @@ namespace GameWebApplication.Controllers.Views
                 ModelState.AddModelError("update_success", "Character successfully updated!");
             }
             
-
             return View("EditCharacter", input);
         }
 

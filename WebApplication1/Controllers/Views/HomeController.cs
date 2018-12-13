@@ -3,14 +3,11 @@ using GameWebApplication.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.WebPages;
 using GameWebApplication.Controllers.Data;
-using System.Web.UI.WebControls;
 
 namespace GameWebApplication.Controllers.Views
 {
@@ -19,7 +16,6 @@ namespace GameWebApplication.Controllers.Views
         public ActionResult Index(UserViewModel model)
         {
             var authManager = HttpContext.GetOwinContext().Authentication;
-
             authManager.SignOut();
 
             return View(model);
@@ -43,10 +39,6 @@ namespace GameWebApplication.Controllers.Views
                         //use the instance that has been created. 
                         authManager.SignIn(
                             new AuthenticationProperties { IsPersistent = false }, ident);
-                        if (userManager.IsInRole(user.Id, "admin"))
-                        {
-                            return RedirectToAction("AdminPage", "AdminPage");
-                        }
                         return RedirectToAction("UsersPage", "UsersPage");
                     }
                 }
@@ -72,7 +64,7 @@ namespace GameWebApplication.Controllers.Views
 
         public ActionResult CreateUser()
         {
-            ViewBag.Title = "CREATING USER";
+            ViewBag.Title = "Creating User...";
 
             return View();
         }

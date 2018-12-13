@@ -1,14 +1,11 @@
 ﻿@model GameWebApplication.Models.ViewModels.EditCharacterViewModel
 
 @{
-    /**/
-
-    ViewBag.Title = $"Edit {Model.CharacterName}";
+    ViewBag.Title = $"Edit character";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<h2>@ViewBag.Title</h2>
+<h2>Edit @Model.CharacterName</h2>
 
 @using (Html.BeginForm("EditCharacter", "Statistics", FormMethod.Post, new { @class = "changeChar_class" }))
 {
@@ -22,21 +19,21 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Kills, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Kills, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Kills, new { @class = "form-control", @type = "number" })
             @Html.ValidationMessageFor(m => m.Kills, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Deaths, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Deaths, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Deaths, new { @class = "form-control", @type = "number" })
             @Html.ValidationMessageFor(m => m.Deaths, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.TotalMoney, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.TotalMoney, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.TotalMoney, new { @class = "form-control", @type = "number" })
             @Html.ValidationMessageFor(m => m.TotalMoney, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -60,33 +57,3 @@
     </div>
     @Html.ValidationSummary()
 }
-
-@* @using (Html.BeginForm("ChangeStatistics", "AdminPage", FormMethod.Post, new { @class = "changePsw_class" })) *@
-@* { *@
-@*     <div class="form-group"> *@
-@*         @Html.LabelFor(m => m.Statistics.Kills, new { @class = "col-md-2 control-label" }) *@
-@*         <div class="col-md-10"> *@
-@*             @Html.TextBoxFor(m => m.Statistics.Kills, new { @class = "form-control" }) *@
-@*             @Html.ValidationMessageFor(m => m.Statistics.Kills, "", new { @class = "text-danger" }) *@
-@*         </div> *@
-@*     </div> *@
-@*     <div class="form-group"> *@
-@*         @Html.LabelFor(m => m.Statistics.Deaths, new { @class = "col-md-2 control-label" }) *@
-@*         <div class="col-md-10"> *@
-@*             @Html.TextBoxFor(m => m.Statistics.Deaths, new { @class = "form-control" }) *@
-@*             @Html.ValidationMessageFor(m => m.Statistics.Deaths, "", new { @class = "text-danger" }) *@
-@*         </div> *@
-@*     </div> *@
-@*     <div class="form-group"> *@
-@*         @Html.LabelFor(m => m.Statistics.TotalMoney, new { @class = "col-md-2 control-label" }) *@
-@*         <div class="col-md-10"> *@
-@*             @Html.TextBoxFor(m => m.Statistics.TotalMoney, new { @class = "form-control" }) *@
-@*             @Html.ValidationMessageFor(m => m.Statistics.TotalMoney, "", new { @class = "text-danger" }) *@
-@*         </div> *@
-@*     </div> *@
-@*     <div class="form-group"> *@
-@*         <div class="col-md-offset-2 col-md-10"> *@
-@*             <input type="submit" value="Change statistics" class="btn btn-default" /> *@
-@*         </div> *@
-@*     </div> *@
-@* } *@
