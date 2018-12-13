@@ -26,7 +26,7 @@ namespace GameWebApplication.Controllers.Views
             var charactersByUser = charController.GetCharacter().Where(character => character.UserId.Equals(userId)).ToList();
             
             var statistics = statController.GetStatistics().Where(stat => charactersByUser.Count > 0 && charactersByUser.Select(character => character.Id).Contains(stat.CharacterId)).ToList();
-            
+
             var viewModel = new StatisticsViewModel
             {
                 UserName = authManager.User.Identity.Name,
@@ -34,13 +34,12 @@ namespace GameWebApplication.Controllers.Views
                 Statistics = statistics
             };
 
-
             return View(viewModel);
         }
 
         [Authorize(Roles = "admin")]
-        [Route("Statistics/AllStatsPage")]
-        public ActionResult AllStatsPage()
+        [Route("Statistics/AllStats")]
+        public ActionResult AllStats()
         {
             AllStatsViewModel viewModel = new AllStatsViewModel
             {
@@ -72,7 +71,7 @@ namespace GameWebApplication.Controllers.Views
             if (character == null)
             {
                 ModelState.AddModelError("character_fetch", "Could not find the character in the database");
-                return RedirectToAction("AllStatsPage");
+                return RedirectToAction("AllStats");
             }
 
             Character characterToEdit = character.Content;
@@ -99,7 +98,7 @@ namespace GameWebApplication.Controllers.Views
                 if (character == null)
                 {
                     ModelState.AddModelError("character_fetch", "Could not find the character in the database");
-                    return RedirectToAction("AllStatsPage");
+                    return RedirectToAction("AllStats");
                 }
 
                 Character characterToEdit = character.Content;
@@ -113,7 +112,7 @@ namespace GameWebApplication.Controllers.Views
                 statController.UpdateStatistics(statsForCharacter.Id, statsForCharacter);
                 ModelState.AddModelError("update_success", "Character successfully updated!");
             }
-            
+
             return View("EditCharacter", input);
         }
 

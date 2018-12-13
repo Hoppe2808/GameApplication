@@ -7,7 +7,7 @@
 
 <h2>Edit "@Model.UserName":</h2>
 
-@using (Html.BeginForm("ChangeUsername", "UsersPage", FormMethod.Post, new { @class = "changeUsr_class" }))
+@using (Html.BeginForm("ChangeUsername", "Users", FormMethod.Post, new { @class = "changeUsr_class" }))
 {
     <div class="form-group">
         <label class="col-md-2 control-label">User name</label>
@@ -23,7 +23,7 @@
     </div>
 }
 
-@using (Html.BeginForm("ChangePassword", "UsersPage", FormMethod.Post, new { @class = "changePsw_class" }))
+@using (Html.BeginForm("ChangePassword", "Users", FormMethod.Post, new { @class = "changePsw_class" }))
 {
     <div class="form-group">
         <label class="col-md-2 control-label">Old password</label>
@@ -33,10 +33,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label class = "col-md-2 control-label">New password</label>
+        <label class="col-md-2 control-label">New password</label>
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
-            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
@@ -45,3 +45,4 @@
         </div>
     </div>
 }
+@Html.ValidationSummary()

@@ -3,11 +3,8 @@ using GameWebApplication.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GameWebApplication.Controllers.Data;
 
 namespace GameWebApplication.Controllers.Views
 {
@@ -41,7 +38,7 @@ namespace GameWebApplication.Controllers.Views
                         //use the instance that has been created. 
                         authManager.SignIn(
                             new AuthenticationProperties { IsPersistent = false }, ident);
-                        return RedirectToAction("UsersPage", "UsersPage");
+                        return RedirectToAction("User", "Users");
                     }
                 }
                 else
@@ -52,20 +49,6 @@ namespace GameWebApplication.Controllers.Views
 
             ModelState.AddModelError("wrong_info", "Invalid username or password");
             return View("Index", input);
-        }
-
-        public ActionResult CreateUser()
-        {
-            ViewBag.Title = "Creating User...";
-
-            return View();
-        }
-
-        public ActionResult StatisticsPage()
-        {
-            ViewBag.Title = "Stats Page";
-
-            return Content("There are no statistics if you are not logged in!");
         }
     }
 }

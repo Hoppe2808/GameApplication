@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Http.Results;
@@ -8,7 +6,6 @@ using System.Web.Mvc;
 using GameWebApplication.Controllers.Data;
 using GameWebApplication.Models;
 using GameWebApplication.Models.ViewModels;
-using GameWebApplication.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -21,8 +18,8 @@ namespace GameWebApplication.Controllers.Views
 
         private AppUserManager userManager;
 
-        [Route("Inventory/InventoryPage")]
-        public ActionResult InventoryPage(InventoryViewModel viewModel)
+        [Route("Inventory/ByCharacter")]
+        public ActionResult ByCharacter(InventoryViewModel viewModel)
         {
             userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
             var authManager = HttpContext.GetOwinContext().Authentication;
