@@ -14,7 +14,7 @@ namespace GameWebApplication.Controllers.Views
     {
 
         [Route("Register")]
-        public ActionResult RegisterUserPage(RegisterUserViewModel model)
+        public ActionResult RegisterUser(RegisterUserViewModel model)
         {
             ViewBag.Title = "Register Page";
 
@@ -22,13 +22,13 @@ namespace GameWebApplication.Controllers.Views
         }
 
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult> RegisterUser(RegisterUserViewModel userData)
+        public async System.Threading.Tasks.Task<ActionResult> DoRegisterUser(RegisterUserViewModel userData)
         {
             if (ModelState.IsValid)
             {
                 var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
 
-                if(string.IsNullOrEmpty(userData.Username) || string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.ConfirmPassword))
+                if (string.IsNullOrEmpty(userData.Username) || string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.ConfirmPassword))
                 {
                     ModelState.AddModelError("empty_fields", "Please fill out all fields");
                     return View("RegisterUserPage", userData);
@@ -38,12 +38,12 @@ namespace GameWebApplication.Controllers.Views
                 if (existingUser != null)
                 {
                     ModelState.AddModelError("user_exists", "User alredy exists");
-                    return View("RegisterUserPage", userData);
+                    return View("RegisterUser", userData);
                 }
-                else if (!userData.Password.Equals(userData.ConfirmPassword))
+                if (!userData.Password.Equals(userData.ConfirmPassword))
                 {
                     ModelState.AddModelError("pwds_dont_match", "The two passwords entered do not match");
-                    return View("RegisterUserPage", userData);
+                    return View("RegisterUser", userData);
                 }
                 User user = new User { UserName = userData.Username };
                 IdentityResult result = await userManager.CreateAsync(user, userData.Password);
@@ -59,14 +59,11 @@ namespace GameWebApplication.Controllers.Views
                     {
                         userManager.AddToRole(userManager.FindByName(user.UserName).Id, "default");
                     }
-                    ModelState.AddModelError("identity_success", "User successfully created..");
-                    return View("RegisterUserPage", userData);
+                    ModelState.AddModelError("identity_success", "User successfully created.");
+                    return View("RegisterUser", userData);
                 }
-                else
-                {
-                    ModelState.AddModelError("identity_error", result.Errors.First());
-                    return View("RegisterUserPage", userData);
-                }
+                ModelState.AddModelError("identity_error", result.Errors.First());
+                return View("RegisterUser", userData);
             }
             return Redirect(Url.Action("Index", "Home"));
         }

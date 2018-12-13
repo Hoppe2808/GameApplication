@@ -1,11 +1,11 @@
 ﻿@using GameWebApplication.Models
-@@model GameWebApplication.Models.ViewModels.AllStatsViewModel
+
 @{
-    ViewBag.Title = "AllStatsPage";
+    ViewBag.Title = "All Stats";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AllStatsPage</h2>
+<h2>Stats for all users</h2>
 @{
     List<User> users = Model.Users;
     List<Statistics> statistics = Model.Statistics;
@@ -44,8 +44,6 @@
                 <td>@stats.TotalMoney</td>
             </tr>
         }
-
-
     }
 </table>
 

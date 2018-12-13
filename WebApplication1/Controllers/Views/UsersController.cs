@@ -7,11 +7,11 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace GameWebApplication.Controllers.Views
 {
-    public class UsersPageController : Controller
+    public class UsersController : Controller
     {
-        // GET: UsersPage
-        [Route("UsersPage/UsersPage")]
-        public ActionResult UsersPage()
+        // GET: Users
+        [Route("Users/User")]
+        public ActionResult User()
         {
             bool validateUser = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
@@ -19,11 +19,12 @@ namespace GameWebApplication.Controllers.Views
             {
                 return View();
             }
+
             return RedirectToAction("Index", "Home");
         }
 
-        [Route("UsersPage/EditUsersPage")]
-        public ActionResult EditUserPage(EditUserViewModel input)
+        [Route("Users/EditUsers")]
+        public ActionResult EditUser(EditUserViewModel input)
         {
             if (input.UserName != null)
             {
@@ -49,18 +50,26 @@ namespace GameWebApplication.Controllers.Views
 
             userManager.Update(user);
 
-            return RedirectToAction("EditUserPage", input);
+            return RedirectToAction("EditUser", input);
         }
 
         public ActionResult ChangePassword(EditUserViewModel input)
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            var authManager = HttpContext.GetOwinContext().Authentication;
+            if (input.OldPassword == null || input.Password == null)
+            {
+                ModelState.AddModelError("empty_password", "You have to fill in a value for both old and new password.");
+            }
+            else
+            {
+                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                var authManager = HttpContext.GetOwinContext().Authentication;
 
-            string userId = authManager.User.Identity.GetUserId();
+                string userId = authManager.User.Identity.GetUserId();
 
-            userManager.ChangePassword(userId, input.OldPassword, input.Password);
-            return Redirect(Url.Action("EditUserPage", "UsersPage"));
+                userManager.ChangePassword(userId, input.OldPassword, input.Password);
+            }
+
+            return RedirectToAction("EditUser", input);
         }
     }
 }

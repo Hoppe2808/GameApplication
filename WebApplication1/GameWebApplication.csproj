@@ -626,8 +626,7 @@
     <Compile Include="Controllers\Views\RegisterController.cs" />
     <Compile Include="Controllers\Views\InventoryController.cs" />
     <Compile Include="Controllers\Views\StatisticsController.cs" />
-    <Compile Include="Controllers\Views\AdminPageController.cs" />
-    <Compile Include="Controllers\Views\UsersPageController.cs" />
+    <Compile Include="Controllers\Views\UsersController.cs" />
     <Compile Include="DataAccessObjects\CharacterDao.cs" />
     <Compile Include="DataAccessObjects\EquipmentDao.cs" />
     <Compile Include="DataAccessObjects\InventoryDao.cs" />
@@ -758,8 +757,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\UsersPage\UsersPage.cshtml" />
-    <Content Include="Views\Home\CharacterPage.cshtml" />
+    <Content Include="Views\Users\User.cshtml" />
     <Content Include="Views\Statistics\ByUser.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -771,12 +769,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Register\RegisterUserPage.cshtml" />
-    <Content Include="Views\UsersPage\EditUserPage.cshtml" />
-    <Content Include="Views\Statistics\AllStatsPage.cshtml" />
+    <Content Include="Views\Register\RegisterUser.cshtml" />
+    <Content Include="Views\Users\EditUser.cshtml" />
+    <Content Include="Views\Statistics\AllStats.cshtml" />
     <Content Include="Views\Statistics\EditCharacter.cshtml" />
-    <Content Include="Views\Inventory\InventoryPage.cshtml" />
-    <Content Include="Views\AdminPage\_Admin.cshtml" />
+    <Content Include="Views\Inventory\ByCharacter.cshtml" />
+    <Content Include="Views\Users\_AdminOptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

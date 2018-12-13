@@ -1,13 +1,13 @@
 ﻿@model GameWebApplication.Models.ViewModels.RegisterUserViewModel
 
 @{
-                ViewBag.Title = "RegisterUserPage";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>RegisterUserPage</h2>
+<h2>Register User</h2>
 
-@using (Html.BeginForm("RegisterUser", "Register", FormMethod.Post, new { @class = "register_class" }))
+@using (Html.BeginForm("DoRegisterUser", "Register", FormMethod.Post, new { @class = "register_class" }))
 {
     @Html.AntiForgeryToken()
     <h4>Register a new user.</h4>

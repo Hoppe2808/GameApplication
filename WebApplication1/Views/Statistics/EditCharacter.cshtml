@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit @Model.CharacterName</h2>
+<h2>Edit "@Model.CharacterName":</h2>
 
 @using (Html.BeginForm("EditCharacter", "Statistics", FormMethod.Post, new { @class = "changeChar_class" }))
 {
@@ -37,18 +37,6 @@
             @Html.ValidationMessageFor(m => m.TotalMoney, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    @* <form asp-controller="Statistics" asp-action="DoUpdateCharacter"> *@
-    @*     <label asp-for="CharacterName">Name</label> *@
-    @*     <input asp-for="CharacterName" value="@Model.CharacterName" class="form-control" /> *@
-    @*     <label asp-for="Kills">Kills</label> *@
-    @*     <input asp-for="Kills" value="@Model.Kills" class="form-control" /> *@
-    @*     <label asp-for="Deaths">Deaths</label> *@
-    @*     <input asp-for="Deaths" value="@Model.Deaths" class="form-control" /> *@
-    @*     <label asp-for="TotalMoney">Total money</label> *@
-    @*     <input asp-for="TotalMoney" value="@Model.TotalMoney" class="form-control" /> *@
-    @*     <input type="submit" class="btn btn-default" value="Update character" /> *@
-    @* </form> *@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
