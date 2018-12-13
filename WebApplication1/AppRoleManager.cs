@@ -12,6 +12,9 @@ namespace GameWebApplication
 {
     public class AppRoleManager : RoleManager<IdentityRole>
     {
+
+        private readonly GameWebApplicationContext _db = new GameWebApplicationContext();
+
         public AppRoleManager(IRoleStore<IdentityRole, string> roleStore)
             : base(roleStore)
         {

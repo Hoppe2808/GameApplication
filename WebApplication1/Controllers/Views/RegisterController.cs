@@ -12,6 +12,7 @@ namespace GameWebApplication.Controllers.Views
 {
     public class RegisterController : Controller
     {
+        private AppUserManager userManager;
 
         [Route("Register")]
         public ActionResult RegisterUserPage(RegisterUserViewModel model)
@@ -26,7 +27,7 @@ namespace GameWebApplication.Controllers.Views
         {
             if (ModelState.IsValid)
             {
-                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
 
                 if(string.IsNullOrEmpty(userData.Username) || string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.ConfirmPassword))
                 {

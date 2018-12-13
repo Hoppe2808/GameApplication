@@ -16,14 +16,16 @@ namespace GameWebApplication.Controllers.Views
 {
     public class InventoryController : Controller
     {
+        private CharacterController charController = new CharacterController();
+        private Data.InventoryController inventoryController = new Data.InventoryController();
+
+        private AppUserManager userManager;
+
         [Route("Inventory/InventoryPage")]
         public ActionResult InventoryPage(InventoryViewModel viewModel)
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
             var authManager = HttpContext.GetOwinContext().Authentication;
-
-            CharacterController charController = new CharacterController();
-            Data.InventoryController inventoryController = new Data.InventoryController();
 
             string userId = authManager.User.Identity.GetUserId();
             viewModel.characters = charController.GetCharacter().Where(character => character.UserId.Equals(userId)).ToList();

@@ -12,6 +12,7 @@ namespace GameWebApplication
 {
     public class AppUserManager : UserManager<User>
     {
+        private readonly GameWebApplicationContext _db = new GameWebApplicationContext();
         public AppUserManager(IUserStore<User> store)
             : base(store)
         {

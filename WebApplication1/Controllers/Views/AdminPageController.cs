@@ -17,9 +17,6 @@ namespace GameWebApplication.Controllers.Views
         [Route("AdminPage/AdminPage")]
         public ActionResult AdminPage()
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            var authManager = HttpContext.GetOwinContext().Authentication;
-
             bool validateUser = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
             if (validateUser)

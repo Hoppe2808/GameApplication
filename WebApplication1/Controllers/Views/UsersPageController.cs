@@ -9,6 +9,8 @@ namespace GameWebApplication.Controllers.Views
 {
     public class UsersPageController : Controller
     {
+        private AppUserManager userManager;
+
         // GET: UsersPage
         [Route("UsersPage/UsersPage")]
         public ActionResult UsersPage()
@@ -40,7 +42,7 @@ namespace GameWebApplication.Controllers.Views
 
         public ActionResult ChangeUsername(EditUserViewModel input)
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
             var authManager = HttpContext.GetOwinContext().Authentication;
 
             User user = userManager.FindById(authManager.User.Identity.GetUserId());
@@ -54,7 +56,7 @@ namespace GameWebApplication.Controllers.Views
 
         public ActionResult ChangePassword(EditUserViewModel input)
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
             var authManager = HttpContext.GetOwinContext().Authentication;
 
             string userId = authManager.User.Identity.GetUserId();

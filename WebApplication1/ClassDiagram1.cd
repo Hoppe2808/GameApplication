@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameWebApplication.AppRoleManager">
+    <Position X="20.75" Y="10.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="20.969" Y="10.5" />
+        <Point X="20.969" Y="3.329" />
+        <Point X="14.25" Y="3.329" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppRoleManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.AppUserManager">
+    <Position X="22.5" Y="10.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.875" Y="10.5" />
+        <Point X="22.875" Y="3.329" />
+        <Point X="14.25" Y="3.329" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppUserManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Data.CharacterController">
+    <Position X="17.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAIAAAAAAACAAAAAAAAACAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\Data\CharacterController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_characterDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Data.EquipmentController">
+    <Position X="7.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAQAAAAAAAAAQAAAAAAEAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Data\EquipmentController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_equipmentDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Data.InventoryController">
+    <Position X="14.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAABAAAYAAgAAgAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Controllers\Data\InventoryController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_inventoryDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Data.StatisticsController">
+    <Position X="12.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAAAAAAABQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Data\StatisticsController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_statisticsDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Data.UsersController">
+    <Position X="9.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAAAAAAQAAAAAEAAAAAAAAAQAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Data\UsersController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userDao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Views.AdminPageController">
+    <Position X="7.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Views\AdminPageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Views.HomeController">
+    <Position X="17.25" Y="15" Width="1.5" />
+    <AssociationLine Name="userManager" Type="GameWebApplication.AppUserManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18" Y="15" />
+        <Point X="18" Y="12.56" />
+        <Point X="18.479" Y="12.56" Type="JumpStart" />
+        <Point X="18.646" Y="12.56" Type="JumpEnd" />
+        <Point X="23.25" Y="12.56" />
+        <Point X="23.25" Y="11.925" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIBAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\Views\HomeController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Views.InventoryController">
+    <Position X="14.75" Y="15.25" Width="1.5" />
+    <AssociationLine Name="charController" Type="GameWebApplication.Controllers.Data.CharacterController" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.375" Y="15.25" />
+        <Point X="15.375" Y="12.944" />
+        <Point X="15.729" Y="12.944" Type="JumpStart" />
+        <Point X="15.896" Y="12.944" Type="JumpEnd" />
+        <Point X="17.917" Y="12.944" Type="JumpStart" />
+        <Point X="18.083" Y="12.944" Type="JumpEnd" />
+        <Point X="18.562" Y="12.944" />
+        <Point X="18.562" Y="12.31" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="inventoryController" Type="GameWebApplication.Controllers.Data.InventoryController" FixedFromPoint="true">
+      <Path>
+        <Point X="15.375" Y="15.25" />
+        <Point X="15.375" Y="14.875" />
+        <Point X="15.812" Y="14.875" />
+        <Point X="15.812" Y="12.694" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="userManager" Type="GameWebApplication.AppUserManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.375" Y="15.25" />
+        <Point X="15.375" Y="14.375" />
+        <Point X="15.729" Y="14.375" Type="JumpStart" />
+        <Point X="15.896" Y="14.375" Type="JumpEnd" />
+        <Point X="17.917" Y="14.375" Type="JumpStart" />
+        <Point X="18.083" Y="14.375" Type="JumpEnd" />
+        <Point X="18.479" Y="14.375" Type="JumpStart" />
+        <Point X="18.646" Y="14.375" Type="JumpEnd" />
+        <Point X="23.25" Y="14.375" />
+        <Point X="23.25" Y="11.925" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAACAAAAAAAAAAAAAAAAAAAAAAQAAAAgAAAAAA=</HashCode>
+      <FileName>Controllers\Views\InventoryController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="charController" />
+      <Field Name="inventoryController" />
+      <Field Name="userManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Views.RegisterController">
+    <Position X="9.5" Y="14.75" Width="1.5" />
+    <AssociationLine Name="userManager" Type="GameWebApplication.AppUserManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="14.75" />
+        <Point X="10.25" Y="14.375" />
+        <Point X="12.382" Y="14.375" Type="JumpStart" />
+        <Point X="12.548" Y="14.375" Type="JumpEnd" />
+        <Point X="13.417" Y="14.375" Type="JumpStart" />
+        <Point X="13.583" Y="14.375" Type="JumpEnd" />
+        <Point X="15.292" Y="14.375" Type="JumpStart" />
+        <Point X="15.458" Y="14.375" Type="JumpEnd" />
+        <Point X="15.729" Y="14.375" Type="JumpStart" />
+        <Point X="15.896" Y="14.375" Type="JumpEnd" />
+        <Point X="17.917" Y="14.375" Type="JumpStart" />
+        <Point X="18.083" Y="14.375" Type="JumpEnd" />
+        <Point X="18.479" Y="14.375" Type="JumpStart" />
+        <Point X="18.646" Y="14.375" Type="JumpEnd" />
+        <Point X="23.25" Y="14.375" />
+        <Point X="23.25" Y="11.925" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Controllers\Views\RegisterController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Views.StatisticsController">
+    <Position X="12.25" Y="15.25" Width="1.5" />
+    <AssociationLine Name="charController" Type="GameWebApplication.Controllers.Data.CharacterController" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.125" Y="15.25" />
+        <Point X="13.125" Y="14.5" />
+        <Point X="13.417" Y="14.5" Type="JumpStart" />
+        <Point X="13.583" Y="14.5" Type="JumpEnd" />
+        <Point X="15.292" Y="14.5" Type="JumpStart" />
+        <Point X="15.458" Y="14.5" Type="JumpEnd" />
+        <Point X="15.729" Y="14.5" Type="JumpStart" />
+        <Point X="15.896" Y="14.5" Type="JumpEnd" />
+        <Point X="17.917" Y="14.5" Type="JumpStart" />
+        <Point X="18.083" Y="14.5" Type="JumpEnd" />
+        <Point X="18.562" Y="14.5" />
+        <Point X="18.562" Y="12.31" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="uc" Type="GameWebApplication.Controllers.Data.UsersController" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.625" Y="15.25" />
+        <Point X="12.465" Y="15.25" />
+        <Point X="12.465" Y="13.786" />
+        <Point X="12.14" Y="13.786" />
+        <Point X="12.14" Y="13.683" />
+        <Point X="10.562" Y="13.683" />
+        <Point X="10.562" Y="12.502" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAgEAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAgA=</HashCode>
+      <FileName>Controllers\Views\StatisticsController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="charController" />
+      <Field Name="statController" />
+      <Field Name="uc" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Controllers.Views.UsersPageController">
+    <Position X="19.75" Y="14.75" Width="1.5" />
+    <AssociationLine Name="userManager" Type="GameWebApplication.AppUserManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="20.5" Y="14.75" />
+        <Point X="20.5" Y="14.375" />
+        <Point X="23.25" Y="14.375" />
+        <Point X="23.25" Y="11.925" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAECgAAAAAAAA=</HashCode>
+      <FileName>Controllers\Views\UsersPageController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.DataAccessObjects.CharacterDao">
+    <Position X="19" Y="4.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19.75" Y="4.5" />
+        <Point X="19.75" Y="4.125" />
+        <Point X="14.25" Y="4.125" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAIAAAAAFACAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>DataAccessObjects\CharacterDao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.DataAccessObjects.EquipmentDao">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.5" Y="4.5" />
+        <Point X="9.5" Y="4.125" />
+        <Point X="14.25" Y="4.125" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAQAAAAAAEAIIBAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccessObjects\EquipmentDao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.DataAccessObjects.InventoryDao">
+    <Position X="16" Y="4.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.75" Y="4.5" />
+        <Point X="16.75" Y="4.125" />
+        <Point X="14.25" Y="4.125" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAgAAAAAAAAAAAABAABAAAAAAgAAAAAAACAAAAAAA=</HashCode>
+      <FileName>DataAccessObjects\InventoryDao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.DataAccessObjects.StatisticsDao">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedToPoint="true">
+      <Path>
+        <Point X="13.875" Y="4.5" />
+        <Point X="13.875" Y="4.125" />
+        <Point X="14.25" Y="4.125" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>UAAAgAAAAAQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccessObjects\StatisticsDao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.DataAccessObjects.UserDao">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <AssociationLine Name="_db" Type="GameWebApplication.Models.GameWebApplicationContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.75" Y="4.5" />
+        <Point X="11.75" Y="4.125" />
+        <Point X="14.25" Y="4.125" />
+        <Point X="14.25" Y="2.954" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAgAAAAAAAAQAEAAAAAAAAAQAAAAAgEAAAAAAAAAA=</HashCode>
+      <FileName>DataAccessObjects\UserDao.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameWebApplication.Models.AppRole" Collapsed="true">
+    <Position X="10" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AppRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.BaseModel" Collapsed="true">
+    <Position X="18" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.Character" Collapsed="true">
+    <Position X="12.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEAAAAAAwAAAAAAAAAAEAAAgAAAAA=</HashCode>
+      <FileName>Models\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.Equipment" Collapsed="true">
+    <Position X="14.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Equipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.GameWebApplicationContext">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAEAAAAAAQAAAAAAAAAAQAAAgAAAAA=</HashCode>
+      <FileName>Models\GameWebApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.Inventory" Collapsed="true">
+    <Position X="14.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgE=</HashCode>
+      <FileName>Models\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.Item" Collapsed="true">
+    <Position X="18" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAgAAAAA=</HashCode>
+      <FileName>Models\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.Statistics" Collapsed="true">
+    <Position X="12.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAQAAAAAAgAAAAAABACAA=</HashCode>
+      <FileName>Models\Statistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.User" Collapsed="true">
+    <Position X="10" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.ViewModels.AllStatsViewModel">
+    <Position X="13" Y="25.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\AllStatsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.ViewModels.StatisticsViewModel">
+    <Position X="13" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\StatisticsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.ViewModels.EditCharacterViewModel">
+    <Position X="11.25" Y="25.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAgACAAAAAAAAAAAAAAgAAAAAABAAAA=</HashCode>
+      <FileName>Models\ViewModels\EditCharacterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.ViewModels.EditUserViewModel">
+    <Position X="14.75" Y="25.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\EditUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.ViewModels.InventoryViewModel">
+    <Position X="14.75" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\InventoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.ViewModels.RegisterUserViewModel">
+    <Position X="11.25" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAQAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ViewModels\RegisterUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWebApplication.Models.ViewModels.UserViewModel">
+    <Position X="16.5" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

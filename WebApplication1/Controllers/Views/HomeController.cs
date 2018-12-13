@@ -13,6 +13,8 @@ namespace GameWebApplication.Controllers.Views
 {
     public class HomeController : Controller
     {
+        private AppUserManager userManager;
+
         public ActionResult Index(UserViewModel model)
         {
             var authManager = HttpContext.GetOwinContext().Authentication;
@@ -27,11 +29,11 @@ namespace GameWebApplication.Controllers.Views
         {
             if (ModelState.IsValid)
             {
-                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
                 var authManager = HttpContext.GetOwinContext().Authentication;
                 if (input.UserName != null && input.Password != null)
                 {
-                    User user = userManager.Find(input.UserName, input.Password);
+                    user = userManager.Find(input.UserName, input.Password);
                     if (user != null)
                     {
                         var ident = userManager.CreateIdentity(user,
@@ -50,16 +52,6 @@ namespace GameWebApplication.Controllers.Views
 
             ModelState.AddModelError("wrong_info", "Invalid username or password");
             return View("Index", input);
-        }
-
-        public ActionResult CharacterPage()
-        {
-            CharacterController characterController = new CharacterController();
-            List<Character> characters = characterController.GetCharacter().ToList();
-
-            ViewBag.Title = "Character Page";
-
-            return View(characters);
         }
 
         public ActionResult CreateUser()
